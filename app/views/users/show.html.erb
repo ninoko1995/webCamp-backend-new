@@ -1,40 +1,52 @@
 <h1><%= @user.name %>'s page</h1>
 
-<h2>User info</h2>
-<table>
-  <tr><%= image_tag 'a' %></tr> 
-  <tr>
-	  <th>name</th>
-	  <th><%= @user.name %></th>
-  </tr>
-  <tr>
-	  <th>self introduction</th>
-	  <th><%= @user.introduction %></th>
-  </tr>
-</table>
-
-<h2>Books</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @books.each do |book| %>
+<div class='row'>
+  
+  <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+    <h2>User info</h2>
+    <table class='table'>
+      <tr><%= image_tag profile_url(@user) %></tr> 
       <tr>
-        <td><%= book.title %></td>
-        <td><%= book.body %></td>
-        <td><%= link_to 'Show', book %></td>
-        <% if current_user.id = @user.id %>
-	        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-	        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	      <% end %>
+    	  <th>name</th>
+    	  <th><%= @user.name %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tr>
+    	  <th>self introduction</th>
+    	  <th><%= @user.introduction %></th>
+      </tr>
+    </table>
+    <% if correct_user?(@user) %>
+      <%= link_to 'edit',edit_user_path(@user) %>
+    <% end  %>
+  </div>
+  
+
+  <div class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+    <h2>Books</h2>
+
+    <table class='table'>
+      <thead>
+        <tr> 
+          <th>Title</th>
+          <th>Body</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+            <td><%= link_to 'Show', book %></td>
+            <% if correct_user?(user) %>
+    	        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    	        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    	      <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
