@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user,only: [:show,:edit,:update]
+  befor_action :check_correct_user,only:[:edit,:update]
+  before_action :set_user,only: [:show]
   
   def show
     @books = @user.books
@@ -28,5 +29,12 @@ class UsersController < ApplicationController
 
     def user_params
        params.require(:user).permit(:name, :introduction,:image)
+    end
+
+    def check_correct_user
+      set_user
+      if !correct_user(@user)
+        render :show
+      end
     end
 end
