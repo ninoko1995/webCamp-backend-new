@@ -3,4 +3,7 @@ class HomeController < ApplicationController
   	@name = 'Ninomiya'
   	@user = User.new
   end
+
+  def about
+  end
 end

@@ -1,12 +1,12 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!,only: [:create,:update,:destroy]
+  before_action :authenticate_user!,only: [:create,:edit,:update,:destroy]
 
   # GET /books
   # GET /books.json
   def index
     @book = Book.new
-    @books = Book.all
+    @books = Book.all.order(updated_at: :desc)
   end
 
   # GET /books/1
@@ -21,11 +21,11 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.current_user.build(book_params)
+    @book = current_user.books.build(book_params)
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to books_url, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to books_url, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }

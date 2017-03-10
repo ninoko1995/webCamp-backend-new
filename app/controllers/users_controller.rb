@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  befor_action :check_correct_user,only:[:edit,:update]
+  before_action :check_correct_user,only:[:edit,:update]
   before_action :set_user,only: [:show]
   
   def show
-    @books = @user.books
+    @books = @user.books.order(updated_at: :desc)
   end
 
   def index
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
     def check_correct_user
       set_user
-      if !correct_user(@user)
+      if !correct_user?(@user)
         render :show
       end
     end
