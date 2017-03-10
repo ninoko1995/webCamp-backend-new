@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @books = @user.books.order(updated_at: :desc)
+    @book = Book.new
   end
 
   def index

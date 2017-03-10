@@ -16,8 +16,12 @@
       </tr>
     </table>
     <% if correct_user?(@user) %>
-      <%= link_to 'edit',edit_user_path(@user) %>
+      <%= link_to 'edit profile',edit_user_path(@user) %>
     <% end  %>
+
+    <h2>New book</h2>
+    <%= render 'books/form', book: @book %>
+
   </div>
   
 
@@ -38,6 +42,14 @@
           <tr>
             <td><%= book.title %></td>
             <td><%= book.body %></td>
+
+            <% if Favorite.find_by(user_id: current_user.id,book_id: book.id).nil? %>
+                <td><%= link_to "#{book.favorites.count}いいね!", book_favorites_path(book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%></td>
+            <% else %>
+                <td><%= link_to "#{book.favorites.count}いいね!", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' %></td>
+            <% end %>
+          
+            <td><%= link_to 'Show', book %></td>
             <td><%= link_to 'Show', book %></td>
             <% if correct_user?(@user) %>
     	        <td><%= link_to 'Edit', edit_book_path(book) %></td>
