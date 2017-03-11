@@ -1,0 +1,29 @@
+    <table class='table'>
+      <tr><%= image_tag profile_url(user) %></tr> 
+      <tr>
+    	  <th>name</th>
+    	  <th><%= user.name %></th>
+      </tr>
+      <tr>
+    	  <th>self introduction</th>
+    	  <th><%= user.introduction %></th>
+      </tr>
+    </table>
+
+    <div class='row'>
+      <%= link_to 'favorite books',user_favorites_path(user),class: 'btn btn-primary col-lg-12' %>
+
+      <% if correct_user?(user) %>
+        <%= link_to 'edit profile',edit_user_path(user),class: 'btn btn-default col-lg-4' %>
+      <% else %>
+        <% if user.followed_by?(current_user) %>
+          <%= link_to 'following',user_relationships_path(user),method: :delete,class: 'btn btn-primary col-lg-4' %>
+        <% else %>
+          <%= link_to 'follow',user_relationships_path(user),method: :post,class: 'btn btn-default col-lg-4' %>
+        <% end %>
+      <% end  %>
+
+      
+      <%= link_to "#{user.followings.count} following",follows_user_path(user),class: 'btn btn-default col-lg-4' %>
+      <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: 'btn btn-default col-lg-4' %>
+    </div>

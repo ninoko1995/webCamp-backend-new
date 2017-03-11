@@ -1,36 +1,13 @@
-<h1>edit <%= @user.name %>' info</h1>
+<h1><%= @user.name %>'s page</h1>
 
-<h2>User info</h2>
+<div class='row'>
+  
+  <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+  </div>
+  
 
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this edit from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+    <%= render 'form', user: @user %>
   </div>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= f.label :introduction %>
-    <%= f.text_area :introduction %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

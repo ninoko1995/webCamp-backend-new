@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_correct_user,only:[:edit,:update]
-  before_action :set_user,only: [:show]
+  before_action :set_user,only: [:show,:follows,:followers]
+  before_action :set_book
   
   def show
     @books = @user.books.order(updated_at: :desc)
-    @book = Book.new
   end
 
   def index
@@ -23,9 +23,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def followers
+    @followers = @user.followers
+  end
+
+  def follows
+    @follows = @user.followings
+  end
+
+
   private
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_book
+      @book = Book.new
     end
 
     def user_params
