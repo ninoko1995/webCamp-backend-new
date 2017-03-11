@@ -12,4 +12,10 @@ class FavoritesController < ApplicationController
 		@favorite.destroy
 		redirect_to books_path
 	end
+
+	def index
+		@user = User.find(params[:user_id])
+		@favorites = @user.favorites
+		@book = Book.new
+	end
 end

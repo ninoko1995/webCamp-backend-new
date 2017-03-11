@@ -16,8 +16,10 @@
       </tr>
     </table>
     <% if correct_user?(@user) %>
-      <%= link_to 'edit profile',edit_user_path(@user) %>
+      <%= link_to 'edit profile',edit_user_path(@user),class: 'btn btn-primary' %>
     <% end  %>
+
+    <%= link_to 'favorites',user_favorites_path(@user),class: 'btn btn-primary' %>
 
     <h2>New book</h2>
     <%= render 'books/form', book: @book %>
@@ -53,7 +55,7 @@
             <td><%= link_to 'Show', book %></td>
             <% if correct_user?(@user) %>
     	        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    	        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    	        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } ,class: 'btn-sm btn-danger'%></td>
     	      <% end %>
           </tr>
         <% end %>
