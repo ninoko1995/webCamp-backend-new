@@ -34,4 +34,4 @@ class User < ApplicationRecord
       !passive_relationships.find_by(follower_id: user.id).blank?
   end
 
-end 
+end
