@@ -1,6 +1,6 @@
 
-
-    <table class='table'>
+    <%= paginate books %>
+    <table class='table table-hover'>
       <thead>
         <tr> 
           <th>本の題名</th>
@@ -13,19 +13,16 @@
       <tbody>
         <% books.each do |book| %>
           <tr>
-            <td><%= book.title %></td>
+            <td><%= link_to book.title,book %></td>
             <td><%= book.body %></td>
             <td><%= book.user.name %></td>
 
 
             <% if Favorite.find_by(user_id: current_user.id,book_id: book.id).nil? %>
-                <td><%= link_to "#{book.favorites.count}いいね!", book_favorites_path(book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%></td>
+                <td><%= link_to "", book_favorites_path(book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%><%= book.favorites.count %>いいね!</td>
             <% else %>
-                <td><%= link_to "#{book.favorites.count}いいね!", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' %></td>
+                <td><%= link_to "", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' %><%= book.favorites.count %>いいね!</td>
             <% end %>
-          
-            <td><%= link_to 'Show', book %></td>
-            <td><%= link_to 'Show', book %></td>
             <% if correct_user?(book.user) %>
               <td><%= link_to 'Edit', edit_book_path(book) %></td>
               <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
@@ -34,3 +31,5 @@
         <% end %>
       </tbody>
     </table>
+
+    <%= paginate books %>

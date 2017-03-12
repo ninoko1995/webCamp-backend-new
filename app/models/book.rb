@@ -1,4 +1,7 @@
 class Book < ApplicationRecord 
+	#データベースから取ってくるときの時間順を指定
+	default_scope -> { order(created_at: :desc) }
+	
 	#投稿機能
 	belongs_to :user
 

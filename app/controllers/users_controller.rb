@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_book
   
   def show
-    @books = @user.books.order(updated_at: :desc)
+    @books = @user.books.page(params[:page])
   end
 
   def index

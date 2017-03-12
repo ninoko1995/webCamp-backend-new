@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
 
 	def index
 		@user = User.find(params[:user_id])
-		@favorites = @user.favorites
+		@books = Kaminari.paginate_array(@user.favorites.map{|favorite| favorite.book}).page(params[:page])
 		@book = Book.new
 	end
 end

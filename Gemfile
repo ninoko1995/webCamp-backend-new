@@ -14,8 +14,11 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'config'
 
-
+#user登録、ログインログアウト用
 gem 'devise'
+
+#ページ送り用
+gem 'kaminari'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
