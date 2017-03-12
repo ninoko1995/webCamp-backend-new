@@ -1,7 +1,7 @@
 <div class='row'>  
   <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
     <h2>User info</h2>
-    <%= render 'users/info', user: current_user%>
+    <%= render 'users/info', user: current_user ,now: ''%>
 
     <h2>New book</h2>
     <%= render 'form', book: Book.new %>

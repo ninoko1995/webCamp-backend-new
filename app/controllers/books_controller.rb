@@ -22,7 +22,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     current_user.books.create(book_params)
-    redirect_to :back
+    redirect_to user_path(current_user)
   end
 
   # PATCH/PUT /books/1

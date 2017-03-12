@@ -2,7 +2,7 @@
 	<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
     <% if !current_user.blank? %>
 	    <h2>User info</h2>
-	    <%= render 'users/info', user: current_user%>
+	    <%= render 'users/info', user: current_user,now: ''%>
 	   <% end %>
     <h2>New book</h2>
     <%= render 'form', book: Book.new %>
