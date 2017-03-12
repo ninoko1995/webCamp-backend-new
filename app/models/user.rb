@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorite_books,through: :favorite, source: :book
 
+  #comment機能
+  has_many :comments
+
   #follow機能
 		#followする側から見たもの
 		has_many :active_relationships, class_name:  "Relationship",
