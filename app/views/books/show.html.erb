@@ -1,14 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<div class='row'>
+  
+  <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+    <h2>User info</h2>
+    <%= render 'users/info', user: current_user%>
 
-<p>
-  <strong>Body:</strong>
-  <%= @book.body %>
-</p>
+    <h2>New book</h2>
+    <%= render 'form', book: @book %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+  </div>
+  
+
+  <div class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+		<h2>Book detail</h2>
+		<table class='table'>
+		  <tr>
+        <td><%= link_to(@book.user) do %>
+          <%= image_tag profile_url_thumb(@book.user) %><br>
+          <%= @book.user.name %>
+          <% end %>
+        </td>
+        <td><%= link_to @book.title,@book %></td>
+        <td><%= @book.body %></td>
+
+        <% if Favorite.find_by(user_id: current_user.id,book_id: @book.id).nil? %>
+            <td><%= link_to "", book_favorites_path(@book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%><%= @book.favorites.count %>いいね!</td>
+        <% else %>
+            <td><%= link_to "", book_favorites_path(@book), method: :delete,class: 'glyphicon glyphicon-heart' %><%= @book.favorites.count %>いいね!</td>
+        <% end %>
+        <% if correct_user?(@book.user) %>
+          <td><%= link_to 'Edit', edit_book_path(@book) %></td>
+          <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
+        <% end %>
+      </tr>
+		</table>
+  </div>
+</div>

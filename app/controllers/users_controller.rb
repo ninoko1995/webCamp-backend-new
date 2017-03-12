@@ -31,6 +31,16 @@ class UsersController < ApplicationController
     @follows = @user.followings
   end
 
+##timeline機能は応用編であり、今回は課題としない
+  def home
+    @user = current_user
+    @books = Book.new
+    @user.followings.each do |user|
+      @books = @books , user.books
+    end
+    @books = Kaminari.paginate_array(@books).page(params[:page])
+  end
+
 
   private
     def set_user

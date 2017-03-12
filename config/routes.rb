@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 	  	get :follows
 	  	get :followers
 	  end
+
+    #timeline実装用のrouting
+    # collection do
+    #   get :home
+    # end
   end
 
   resources :books do

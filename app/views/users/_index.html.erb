@@ -1,10 +1,16 @@
 <div class='row'>
   <% users.each do |user| %>
     <div class='col-lg-2'>
-      <%= link_to(user) do %>
-        <%= image_tag profile_url(user) %><br>
-        <%= user.name %>
-      <% end %>
+	      <%= link_to(user) do %>
+	        <%= image_tag profile_url(user) %><br>
+	      <% end %>
+	      <%= user.name %>
+	      <br>
+	      <% if user.passive_relationships.where(follower_id: current_user.id).blank? %>
+	      	<%= link_to 'Follow',user_relationships_path(user),method: :post,class: 'btn btn-default' %>
+	      <% else %>
+		      <%= link_to 'Following',user_relationships_path(user),method: :delete,class: 'btn btn-primary' %>
+		    <% end %>
     </div>
   <% end %>
 </div>

@@ -19,6 +19,6 @@
       <% end  %>
 
       
-      <%= link_to "#{user.followings.count}フォロー",follows_user_path(user),class: 'btn btn-default col-lg-4' %>
-      <%= link_to "#{user.followers.count}フォロワー",followers_user_path(user),class: 'btn btn-default col-lg-4' %>
+      <%= link_to "#{user.followings.count}following",follows_user_path(user),class: 'btn btn-default col-lg-4' %>
+      <%= link_to "#{user.followers.count}follower",followers_user_path(user),class: 'btn btn-default col-lg-4' %>
     </div>
