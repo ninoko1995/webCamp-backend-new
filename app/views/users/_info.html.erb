@@ -6,7 +6,7 @@
     </table>
 
     <div class='row'>
-      <%= link_to 'お気に入り',user_favorites_path(user),class: 'btn btn-primary col-lg-12' %>
+      <%= link_to "#{user.favorites.count}件のお気に入り",user_favorites_path(user),class: 'btn btn-primary col-lg-12' %>
 
       <% if correct_user?(user) %>
         <%= link_to '編集',edit_user_path(user),class: 'btn btn-default col-lg-4' %>

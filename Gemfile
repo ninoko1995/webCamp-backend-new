@@ -20,6 +20,9 @@ gem 'devise'
 #ページ送り用
 gem 'kaminari'
 
+#console成型用
+gem 'hirb'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

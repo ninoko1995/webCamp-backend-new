@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170311031610) do
     t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "book_id"], name: "index_favorites_on_user_id_and_book_id", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|
