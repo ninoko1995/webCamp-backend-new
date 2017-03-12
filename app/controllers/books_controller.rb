@@ -29,14 +29,14 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1.json
   def update
     @book.update(book_params)
-    redirect_to :back
+    redirect_to book_path(@book)
   end
 
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
     @book.destroy
-    redirect_to :back
+    redirect_to books_path
   end
 
 

@@ -6,10 +6,12 @@
     </table>
 
     <div class='row'>
-      <%= link_to "#{user.favorites.count}件のお気に入り",user_favorites_path(user),class: 'btn btn-primary col-lg-12' %>
+      <%= link_to "#{user.books.count}件の投稿",user_path(user),class: 'btn btn-primary col-lg-6' %>
+
+      <%= link_to "#{user.favorites.count}件のお気に入り",user_favorites_path(user),class: 'btn btn-primary col-lg-6' %>
 
       <% if correct_user?(user) %>
-        <%= link_to '編集',edit_user_path(user),class: 'btn btn-default col-lg-4' %>
+        <%= link_to '編集',edit_user_path(user),class: 'btn btn-default col-lg-4 glyphicon glyphicon-wrench' %>
       <% else %>
         <% if user.followed_by?(current_user) %>
           <%= link_to 'フォロー中',user_relationships_path(user),method: :delete,class: 'btn btn-primary col-lg-4',remote: true %>

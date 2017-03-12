@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-
+  #データベースから取ってくるときの時間順を指定
+  default_scope -> { order(created_at: :desc) }
+  
 	#devise用の機能
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

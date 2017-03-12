@@ -1,6 +1,6 @@
 
     <%= paginate books %>
-    <table class='table table-hover'>
+    <table class='table table-hover table-inverse'>
       <thead>
         <tr> 
           <th></th>
@@ -26,10 +26,7 @@
             <% else %>
                 <td><%= link_to "", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' %><%= book.favorites.count %>いいね!</td>
             <% end %>
-            <% if correct_user?(book.user) %>
-              <td><%= link_to 'Edit', edit_book_path(book) %></td>
-              <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
-            <% end %>
+            <td><span class='glyphicon glyphicon-comment'><%= book.comments.count %></span></td>
           </tr>
         <% end %>
       </tbody>
