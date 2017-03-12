@@ -1,10 +1,10 @@
-<h1><%= @user.name %>'s page</h1>
+<h1>index page</h1>
 
 <div class='row'>
   
   <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
     <h2>User info</h2>
-    <%= render 'info', user: @user%>
+    <%= render 'info', user: current_user%>
 
     <h2>New book</h2>
     <%= render 'books/form', book: @book %>
