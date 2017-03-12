@@ -16,8 +16,11 @@ Rails.application.routes.draw do
   end
 
   resources :books do
-  	resources :favorites,only:[:create,:destroy]
+  	resource :favorites,only:[:create,:destroy]
     resources :comments,only: [:create,:destroy]
+    member do
+      get :favors
+    end
   end
   root 'home#top'
   get 'home/about'

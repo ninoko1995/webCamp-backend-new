@@ -3,11 +3,11 @@ class RelationshipsController < ApplicationController
 
   def create
       current_user.active_relationships.create(followed_id: params[:user_id])
-      redirect_to user_url(params[:user_id])
+      redirect_to :back
   end
 
   def destroy
       current_user.active_relationships.find_by!(followed_id: params[:user_id]).destroy
-      redirect_to user_url(params[:user_id])
+      redirect_to :back
   end
 end
