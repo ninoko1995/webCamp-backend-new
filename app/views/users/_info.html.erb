@@ -12,9 +12,9 @@
         <%= link_to '編集',edit_user_path(user),class: 'btn btn-default col-lg-4' %>
       <% else %>
         <% if user.followed_by?(current_user) %>
-          <%= link_to 'フォロー中',user_relationships_path(user),method: :delete,class: 'btn btn-primary col-lg-4' %>
+          <%= link_to 'フォロー中',user_relationships_path(user),method: :delete,class: 'btn btn-primary col-lg-4',remote: true %>
         <% else %>
-          <%= link_to 'フォローする',user_relationships_path(user),method: :post,class: 'btn btn-default col-lg-4' %>
+          <%= link_to 'フォローする',user_relationships_path(user),method: :post,class: 'btn btn-default col-lg-4',remote: true %>
         <% end %>
       <% end  %>
 
