@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(
-	name:'aa',
-	email: 'a@a',
-	password: 'aaaaaa',
+	name:'nino',
+	email: 'ninoko1995@yahoo.co.jp',
+	password: 'ninoninomiyamiya1995',
 	introduction: '管理者アカウントです'
 	)
 
@@ -25,8 +25,8 @@ end
 1000.times do |i|
 	Book.create!(
 		user_id: rand(1..20),
-		title: "#{i}番目の投稿"	,
-		body: "読むの#{i}回目だけど、楽しい！！"
+		title: "人生で#{i}番目に読んだ本"	,
+		body: "読むの#{i*10}回目だけど、楽しい！！"
 	)
 end
 
