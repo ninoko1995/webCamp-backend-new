@@ -11,9 +11,9 @@
     </table>
 
     <div class="row">
-      <%= link_to "#{user.books.count}件の投稿",user_path(user),class: "btn btn-#{@boo} col-lg-6" %>
+      <%= link_to "#{user.books.count} 件の投稿",user_path(user),class: "btn btn-#{@boo} col-lg-6" %>
 
-      <%= link_to "#{user.favorites.count}件のお気に入り",user_favorites_path(user),class: "btn  btn-#{@fav} col-lg-6" %>
+      <%= link_to "#{user.favorites.count} 件のお気に入り",user_favorites_path(user),class: "btn  btn-#{@fav} col-lg-6" %>
 
       <% if correct_user?(user) %>
         <%= link_to "編集",edit_user_path(user),class: "btn btn-default col-lg-4 glyphicon glyphicon-wrench" %>
@@ -26,6 +26,6 @@
       <% end  %>
 
       
-      <%= link_to "#{user.followings.count}following",follows_user_path(user),class: "btn btn-#{@wing} col-lg-4" %>
-      <%= link_to "#{user.followers.count}follower",followers_user_path(user),class: "btn btn-#{@wer} col-lg-4" %>
+      <%= link_to "#{user.followings.count} following",follows_user_path(user),class: "btn btn-#{@wing} col-lg-4" %>
+      <%= link_to "#{user.followers.count} follower",followers_user_path(user),class: "btn btn-#{@wer} col-lg-4" %>
     </div>

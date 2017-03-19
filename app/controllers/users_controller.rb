@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_book
   
   def show
-    @books = @user.books.page(params[:page])
+    @books = Kaminari.paginate_array(@user.books).page(params[:page])
   end
 
   def index
