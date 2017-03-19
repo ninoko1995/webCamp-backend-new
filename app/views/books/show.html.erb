@@ -1,14 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @book.title %>
-</p>
+<div class='row'>
 
-<p>
-  <strong>Body:</strong>
-  <%= @book.body %>
-</p>
+  <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+    <h2>user info</h2>
+    <%= render 'user/info' ,user: @user %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+    <h2>New book</h2>
+    <%= render 'form', book: @book %>
+  </div>
+
+  <div class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+    
+		<p>
+		  <strong>Title:</strong>
+		  <%= @book.title %>
+		</p>
+
+		<p>
+		  <strong>Body:</strong>
+		  <%= @book.body %>
+		</p>
+
+		<%= link_to 'Edit', edit_book_path(@book) %> |
+		<%= link_to 'Back', books_path %>
+
+  </div>
+</div>
+
