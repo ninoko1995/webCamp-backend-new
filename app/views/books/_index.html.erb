@@ -17,14 +17,6 @@
             </td>
             <td><%= link_to book.title,book %></td>
             <td><%= book.body %></td>
-
-
-            <% if Favorite.find_by(user_id: current_user.id,book_id: book.id).nil? %>
-                <td><%= link_to "", book_favorites_path(book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%><%= book.favorites.count %>いいね!</td>
-            <% else %>
-                <td><%= link_to "", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' %><%= book.favorites.count %>いいね!</td>
-            <% end %>
-            <td><span class='glyphicon glyphicon-comment'><%= book.comments.count %></span></td>
           </tr>
         <% end %>
       </tbody>
