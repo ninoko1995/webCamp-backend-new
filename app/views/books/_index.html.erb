@@ -25,7 +25,6 @@
             <% else %>
                 <td><%= link_to "", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' %><%= book.favorites.count %>いいね!</td>
             <% end %>
-            <td><span class='glyphicon glyphicon-comment'><%= book.comments.count %></span></td>
           </tr>
         <% end %>
       </tbody>

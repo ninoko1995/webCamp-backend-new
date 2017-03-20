@@ -41,34 +41,4 @@
         <% end %>
       </tr>
     </table>
-
-    <h3>Comments</h3>
-    <table class='table'>
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= link_to(comment.user) do %>
-          <%= image_tag profile_url_thumb(comment.user) %><br>
-          <%= comment.user.name %>
-          <% end %>
-          </td>
-          <td><%= comment.body %></td>
-
-          <% if correct_user?(comment.user) %>
-            <td><%= link_to 'Destroy',[@book, comment], method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
-
-        <% end %>
-        </tr>
-      <% end %>
-		</table>
-
-    <%= form_for([@book,Comment.new]) do |f| %>
-      <div class="field row">
-        <%= f.text_area :body ,class: 'col-lg-11 col-lg-offset-1'%>
-      </div>
-
-      <div class="actions row">
-        <%= f.submit class: 'btn btn-primary col-lg-11 col-lg-offset-1'%>
-      </div>
-    <% end %>
-  </div>
 </div>

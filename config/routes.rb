@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   resources :books do
   	resource :favorites,only:[:create,:destroy]
-    resources :comments,only: [:create,:destroy]
     member do
       get :favors
     end
