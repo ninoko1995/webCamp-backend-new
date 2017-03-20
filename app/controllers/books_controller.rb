@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy,:favors]
   before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
 
   # GET /books
@@ -24,7 +24,8 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.' 
     else
-      redirect_to :back
+      @books = Book.page(params[:page])
+      render :index, notice: 'Failed!!!' 
     end
   end
 
