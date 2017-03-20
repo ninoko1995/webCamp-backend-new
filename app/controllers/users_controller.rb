@@ -18,9 +18,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user),notice: 'Updated your information!' 
     else
-      render :edit
+      render :edit,notice: 'Failed to update, sorry.' 
     end
   end
 
