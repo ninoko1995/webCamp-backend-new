@@ -11,9 +11,7 @@ class Book < ApplicationRecord
 	                 source: :user,
 	                 dependent:   :destroy
 
-	#comment機能
-	has_many :comments,:dependent => :destroy
-
+	
 	validates :title, presence: true
 	validates :body ,presence: true, length: {maximum: 200}
 
