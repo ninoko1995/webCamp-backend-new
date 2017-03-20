@@ -25,6 +25,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.' 
     else
+      @books = Book.all.order(updated_at: :desc)
       render :index
     end
   end

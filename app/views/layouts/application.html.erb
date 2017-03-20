@@ -13,8 +13,13 @@
     <%= render 'layouts/header' %>
 
   	<div class='body'>
-      <p id="notice"><%= notice %></p>
       <div class='container'>
+        <% if !@book.blank? %>
+          <%= render 'layouts/errors',book:@book %>
+        <% end %>
+        
+        <p id="notice"><%= notice %></p>
+      
       	<%= yield %>
       </div>
     </div>
