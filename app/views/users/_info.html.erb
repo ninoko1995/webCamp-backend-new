@@ -11,9 +11,13 @@
     </table>
 
     <div class="row">
-      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-lg-6" %>
+      <%= link_to user_path(user),class: "btn btn-#{@boo} col-lg-6" do %>
+        <strong><%= user.books.count%></strong> books
+      <% end %>
 
-      <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-lg-6" %>
+      <%= link_to user_favorites_path(user),class: "btn  btn-#{@fav} col-lg-6" do %>
+        <strong><%= user.favorites.count %></strong> favorites
+      <% end %>
 
       <% if correct_user?(user) %>
         <%= link_to "",edit_user_path(user),class: "btn btn-default col-lg-4 glyphicon glyphicon-wrench" %>
@@ -26,6 +30,10 @@
       <% end  %>
 
       
-      <%= link_to "#{user.followings.count} followings",follows_user_path(user),class: "btn btn-#{@wing} col-lg-4" %>
-      <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: "btn btn-#{@wer} col-lg-4" %>
+      <%= link_to follows_user_path(user),class: "btn btn-#{@wing} col-lg-4" do %>
+        <strong><%= user.followings.count %></strong> followings
+      <% end %>
+      <%= link_to followers_user_path(user),class: "btn btn-#{@wer} col-lg-4" do %>
+        <strong><%= user.followers.count %></strong>  followers
+      <% end %>
 </div>
