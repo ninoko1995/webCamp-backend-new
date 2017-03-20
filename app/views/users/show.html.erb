@@ -1,18 +1,17 @@
 <div class='row'>
   
-  <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-  	<h2>User info</h2>
-    <%= render 'info', user: @user, now: 'books'%>
+  <div class='col-xs-3'>
+    <h2>User info</h2>
+    <%= render 'info', user: @user,now: 'books'%>
 
     <h2>New book</h2>
     <%= render 'books/form', book: @book %>
 
   </div>
-  
 
-  <div class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
-  	<h2>Books</h2>
-    <%= render 'books/index', books: @books %>
+  <div class='col-xs-9'>
+    <h2>Books</h2>
+    
+    <%= render 'books/index',books: @books %>
   </div>
-
 </div>

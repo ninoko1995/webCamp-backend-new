@@ -1,15 +1,15 @@
 <div class='row'>
-  <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
+
+  <div class='col-xs-3'>
     <h2>User info</h2>
-    <%= render 'users/info', user: current_user,now: ''%>
+    <%= render 'users/info', user: @book.user,now: ''%>
 
     <h2>New book</h2>
     <%= render 'form', book: Book.new %>
-
   </div>
   
 
-  <div class='col-xs-9 col-sm-9 col-md-9 col-lg-9'>
+  <div class='col-xs-9'>
 		<h2>Book detail</h2>
 		<table class='table'>
 		  <tr>
@@ -34,6 +34,7 @@
             いいね!
           <% end %>
         </td>
+
         <% if correct_user?(@book.user) %>
           <td><%= link_to 'Edit', edit_book_path(@book) %></td>
           <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
@@ -69,6 +70,5 @@
         <%= f.submit class: 'btn btn-primary col-lg-11 col-lg-offset-1'%>
       </div>
     <% end %>
-
   </div>
 </div>

@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy,:favors]
-  before_action :authenticate_user!,only: [:create,:edit,:update,:destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy,
+  before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
 
   # GET /books
   # GET /books.json
@@ -21,22 +21,29 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    current_user.books.create(book_params)
-    redirect_to user_path(current_user)
+    @book = current_user.books.build(book_params)
+    if @book.save
+      redirect_to @book, notice: 'Book was successfully created.' 
+    else
+      render :index
+    end
   end
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    @book.update(book_params)
-    redirect_to book_path(@book)
+    if @book.update(book_params)
+      redirect_to @book, notice: 'Book was successfully updated.' 
+    else
+      render :edit
+    end
   end
 
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
     @book.destroy
-    redirect_to books_path
+    redirect_to books_url, notice: 'Book was successfully destroyed.'
   end
 
 
@@ -54,4 +61,6 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :body)
     end
+
+    
 end

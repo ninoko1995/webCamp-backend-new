@@ -33,7 +33,8 @@ class User < ApplicationRecord
  
  	#validation
   validates :name ,presence: true , length: {maximum: 10 , minimum: 2}
-  validates :introduction , length: {maximum: 100}
+
+  validates :introduction , length: {maximum: 50}
   
   def followed_by?(user)
       !passive_relationships.find_by(follower_id: user.id).blank?

@@ -29,8 +29,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :thumb do
       process resize_to_limit: [40, 40]
   end
-  
-  # def scale(width, height)
+    # def scale(width, height)
   #   # do something
   # end
 

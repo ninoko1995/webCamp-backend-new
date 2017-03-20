@@ -15,11 +15,12 @@ User.create!(
 
 20.times do |i|
 	User.create!(
-		name:"#{i}#{i}",
-		email: "#{i}@#{i}",
+		name:"ユーザーその#{i}",
+		email: "user@#{i}",
 		password: "#{i}#{i}#{i}#{i}#{i}#{i}",
 		introduction: "週に#{i}冊は本読んでます！よろしくお願いします！"
 	 )
+
 end
 
 1000.times do |i|

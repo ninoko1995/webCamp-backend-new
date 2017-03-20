@@ -2,8 +2,6 @@ class HomeController < ApplicationController
   before_action :log_in?
 
   def top
-  	@name = 'Ninomiya'
-  	@user = User.new
   end
 
   def about
