@@ -9,6 +9,8 @@
     	  <th><%= user.introduction %></th>
       </tr>
     </table>
-    <% if correct_user?(user) %>
-      <%= link_to 'edit',edit_user_path(user) %>
-    <% end  %>
+    <div class='row'>
+      <% if correct_user?(user) %>
+        <%= link_to 'edit',edit_user_path(user),class: 'col-lg-12 btn btn-default' %>
+      <% end  %>
+    </div>
