@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    binding.pry
     if @user.update(user_params)
       redirect_to user_path(@user),notice: 'Updated your information!' 
     else
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-       params.require(:user).permit(:name, :introduction,:image)
+       params.require(:user).permit(:name, :introduction,:image,:locked?)
     end
 
     def check_correct_user
