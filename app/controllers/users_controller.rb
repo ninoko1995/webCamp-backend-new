@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_correct_user,only:[:edit,:update]
-  before_action :set_user,only: [:show,:follows,:followers]
+  before_action :check_correct_user,only:[:edit,:update,:requires]
+  before_action :set_user,only: [:show,:follows,:followers,:requires]
   before_action :set_book
+  after_action -> {accepted_user?(@user)},only:[:show,:follows,:followers,:requires]
   
   def show
     @books = Kaminari.paginate_array(@user.books).page(params[:page])
@@ -10,14 +11,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @book = Book.new
   end
 
   def edit
   end
 
   def update
-    binding.pry
     if @user.update(user_params)
       redirect_to user_path(@user),notice: 'Updated your information!' 
     else
@@ -31,6 +30,10 @@ class UsersController < ApplicationController
 
   def follows
     @follows = @user.followings
+  end
+
+  def requires
+    @requires =   @user.requires
   end
 
 ##timeline機能は応用編であり、今回は課題としない
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-       params.require(:user).permit(:name, :introduction,:image,:locked?)
+       params.require(:user).permit(:name, :introduction,:image,:locked)
     end
 
     def check_correct_user

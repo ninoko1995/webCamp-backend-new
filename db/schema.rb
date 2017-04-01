@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20170320210340) do
   create_table "relationships", force: :cascade do |t|
     t.integer  "followed_id"
     t.integer  "follower_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "accepted",    default: true
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "accepted"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   end
 
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20170320210340) do
     t.string   "image"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "locked?",                default: false
+    t.boolean  "locked",                 default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

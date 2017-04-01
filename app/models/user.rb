@@ -20,24 +20,40 @@ class User < ApplicationRecord
 
   #follow機能
 		#followする側から見たもの
-		has_many :active_relationships, class_name:  "Relationship",
+		has_many :active_relationships, -> {where(accepted: true)},
+                                    class_name:  "Relationship",
 	                                  foreign_key: "follower_id",
-	                                  dependent:   :destroy
+	                                  dependent:   :destroy                                    
 		has_many :followings, through: :active_relationships, source: :followed                                  
 
 		#followされる側からみたもの
-		has_many :passive_relationships, class_name:  "Relationship",
+		has_many :passive_relationships, -> {where(accepted: true)},
+                                     class_name:  "Relationship",
 	                                   foreign_key: "followed_id",
 	                                   dependent:   :destroy
 		has_many :followers, through: :passive_relationships, source: :follower                                   
+
+    #フォローリクエスト機能
+    has_many :require_relationships,-> {where(accepted: false)},
+                                    class_name: "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent: :destroy
+                                    
+    has_many :requires, through: :require_relationships,source: :follower
  
  	#validation
   validates :name ,presence: true , length: {maximum: 10 , minimum: 2}
 
   validates :introduction , length: {maximum: 50}
   
+  #userにfollowされているかどうかを判断する
   def followed_by?(user)
-      !passive_relationships.find_by(follower_id: user.id).blank?
+    !passive_relationships.find_by(follower_id: user.id,accepted: true).blank?
+  end
+
+  #フォロリクが送られていないかどうかを判断する
+  def requested_by?(user)
+    !passive_relationships.find_by(follower_id: user.id,accepted: false).blank?
   end
 
 end

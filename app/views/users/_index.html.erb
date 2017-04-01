@@ -5,16 +5,20 @@
 	        <%= image_tag profile_url(user) %><br>
 	      <% end %>
 	      <p><%= user.name %>
-          <% if user.locked? %>
-            <span class='glyphicon glyphicon-locked'></span>
-          <% end %>
+	      	<% if user.locked %>
+	          <span class='glyphicon glyphicon-lock'></span>
+	        <% end %>
         </p>
 	      <% if current_user.id != user.id %>
-		      <% if user.passive_relationships.where(follower_id: current_user.id).blank?%>
-		      	<%= link_to 'Follow',user_relationships_path(user),method: :post,class: 'btn btn-default' %>
-		      <% else %>
-			      <%= link_to 'Following',user_relationships_path(user),method: :delete,class: 'btn btn-primary' %>
-			    <% end %>
+	      	<% if user.followed_by?(current_user) %>
+	          <%= link_to "Following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary",remote: true %>
+	        <% else %>
+	          <% if user.requested_by?(current_user) %>
+	            <span class='btn btn-default'>Requesting</span>
+	          <% else %>
+	            <%= link_to "Follow",user_relationships_path(user.id),method: :post,class: "btn btn-default",remote: true %>
+	          <% end %>
+	        <% end %>
 			  <% end %>
 			  <br>
 			  <br>

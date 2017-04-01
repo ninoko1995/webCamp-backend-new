@@ -11,7 +11,10 @@
 
   <div class='col-xs-9'>
     <h2>Books</h2>
-    
-    <%= render 'books/index',books: @books %>
+    <% if @accepted %>
+      <%= render 'books/index',books: @books %>
+    <% else %>
+      <%= render 'layouts/protected' %>
+    <% end %>
   </div>
 </div>
