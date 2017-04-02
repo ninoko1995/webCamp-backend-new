@@ -1,9 +1,11 @@
 <div class='row'>
   <% users.each do |user| %>
     <div class='col-lg-3'>
-	      <%= link_to(user) do %>
-	        <%= image_tag profile_url(user) %><br>
-	      <% end %>
+    		<div class = 'index-icon'>
+		      <%= link_to(user) do %>
+		        <%= image_tag profile_url(user) %><br>
+		      <% end %>
+		    </div>
 	      <p><%= user.name %>
 	      	<% if user.locked %>
 	          <span class='glyphicon glyphicon-lock'></span>
