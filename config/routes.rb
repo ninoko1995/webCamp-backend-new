@@ -3,10 +3,16 @@ Rails.application.routes.draw do
   
   resources :users,only: [:show,:edit,:update,:index] do
   	resources :favorites,only:[:index]
-  	resource :relationships, only: [:create, :destroy]
+  	resources :relationships, only: [:create, :destroy] do
+      member do
+        get :accept
+      end
+    end
+    
 	  member do
 	  	get :follows
 	  	get :followers
+      get :requires
 	  end
 
     #timeline実装用のrouting
