@@ -1,0 +1,20 @@
+<div class='row'>
+  <% users.each do |user| %>
+    <div class='col-lg-3'>
+	      <%= link_to(user) do %>
+	        <%= image_tag profile_url(user) %><br>
+	      <% end %>
+	      <p><%= user.name %>
+	      	<% if user.locked %>
+	          <span class='glyphicon glyphicon-lock'></span>
+	        <% end %>
+        </p>
+        <%= link_to 'accept',accept_user_relationship_path(current_user.id,current_user.require_relationships.find_by(follower_id: user.id).id),class: 'btn btn-default' %>
+			  <br>
+			  <br>
+			  <%= user.introduction %>
+			  <br>
+			  <br>
+    </div>
+  <% end %>
+</div>

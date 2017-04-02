@@ -2,30 +2,45 @@
 <%   now != 'favorites' ? @fav = 'default': @fav =  'primary'%>
 <%   now != 'followings' ? @wing = 'default': @wing =  'primary'%>
 <%   now != 'followers' ? @wer = 'default': @wer =  'primary'%>
+<%   now != 'requires' ? @ire = 'default': @ire =  'primary'%>
 
     <table class="table">
       <tr><td><%= image_tag profile_url(user) %></td></tr> 
-      <tr><td>name : <%= user.name %></td></tr>
+      <tr><td>name : <%= user.name %>
+        <% if user.locked %>
+          <span class='glyphicon glyphicon-lock'></span>
+        <% end %>
+      </td></tr>
       <tr><td>introduction</td></tr>
     	<tr><td> <%= user.introduction %></td></tr>
     </table>
-
+    
     <div class="row">
-      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-lg-6" %>
+      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-xs-6" %>
 
-      <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-lg-6" %>
+      <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-xs-6" %>
 
       <% if correct_user?(user) %>
-        <%= link_to "",edit_user_path(user),class: "btn btn-default col-lg-4 glyphicon glyphicon-wrench" %>
+        <%= link_to "",edit_user_path(user),class: "btn btn-default col-xs-4 glyphicon glyphicon-wrench" %>
       <% else %>
         <% if user.followed_by?(current_user) %>
-          <%= link_to "following",user_relationships_path(user),method: :delete,class: "btn btn-primary col-lg-4",remote: true %>
+          <%= link_to "following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary col-xs-4",remote: true %>
         <% else %>
-          <%= link_to "follow",user_relationships_path(user),method: :post,class: "btn btn-default col-lg-4",remote: true %>
+          <% if user.requested_by?(current_user) %>
+            <span class='btn btn-default col-xs-4'>requesting</span>
+          <% else %>
+            <%= link_to "follow",user_relationships_path(user.id),method: :post,class: "btn btn-default col-xs-4",remote: true %>
+          <% end %>
         <% end %>
       <% end  %>
 
       
-      <%= link_to "#{user.followings.count} followings",follows_user_path(user),class: "btn btn-#{@wing} col-lg-4" %>
-      <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: "btn btn-#{@wer} col-lg-4" %>
-</div>
+      <%= link_to "#{user.followings.count} followings",follows_user_path(user),class: "btn btn-#{@wing} col-xs-4" %>
+      <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: "btn btn-#{@wer} col-xs-4" %>
+      <% if user.locked && user == current_user%>
+        <%= link_to "#{user.requires.count} requires",requires_user_path(user) , class: "btn btn-#{@ire} col-xs-12"%>
+      <% end %>
+
+
+      
+    </div>

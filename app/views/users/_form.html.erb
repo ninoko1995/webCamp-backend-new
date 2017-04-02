@@ -17,6 +17,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :'make accouut locked?' %>
+      <%= f.check_box :locked, {}, 'true', 'false' %>
+    </div>
+
+    <div class="field">
       <%= f.label :image %>
       <%= f.file_field :image %>
     </div>
