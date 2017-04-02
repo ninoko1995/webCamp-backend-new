@@ -27,10 +27,14 @@ class ApplicationController < ActionController::Base
     end 
 
     def accepted_user?(user)
-      if current_user.id == user.id || !Relationship.find_by(follower_id: current_user.id,followed_id:user.id,accepted: true).blank?
-        @accepted = true
+      if user.locked
+        if current_user.id == user.id || !Relationship.find_by(follower_id: current_user.id,followed_id:user.id,accepted: true).blank?
+          @accepted = true
+        else
+          @accepted = false
+        end
       else
-        @accepted = false
+        @accepted = true
       end
       # binding.pry
     end

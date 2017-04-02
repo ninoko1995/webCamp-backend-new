@@ -7,4 +7,11 @@ class Relationship < ApplicationRecord
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
+  validate :cannot_self_follow
+
+  def cannot_self_follow
+  	if follower_id == followed_id
+  		errors.add(:relationship,"You cannot follow yourself!")
+  	end
+  end
 end
