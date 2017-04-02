@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
       else
         @accepted = false
       end
+      # binding.pry
     end
 
 end

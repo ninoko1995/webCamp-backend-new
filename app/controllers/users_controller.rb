@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :check_correct_user,only:[:edit,:update,:requires]
   before_action :set_user,only: [:show,:follows,:followers,:requires]
   before_action :set_book
-  after_action -> {accepted_user?(@user)},only:[:show,:follows,:followers,:requires]
+  before_action -> {accepted_user?(@user)},only:[:show,:follows,:followers,:requires]
   
   def show
     @books = Kaminari.paginate_array(@user.books).page(params[:page])

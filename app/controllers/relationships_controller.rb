@@ -4,10 +4,10 @@ class RelationshipsController < ApplicationController
   def create
   		if Relationship.find_by(follower_id: current_user.id ,followed_id: params[:user_id]).blank?
       	@relationship = current_user.active_relationships.new(followed_id: params[:user_id])
-        if User.find_by(params[:user_id]).locked
-          @relationship.accept = false
+        if User.find_by(id: params[:user_id]).locked
+          @relationship.accepted = false
         else
-          @relationship.accept = true
+          @relationship.accepted = true
         end
         if @relationship.save
           redirect_to :back,notice: "you have successfully followed!" 
@@ -30,7 +30,7 @@ class RelationshipsController < ApplicationController
   end
 
   def accept
-  	@request = Relationship.find_by(id: params[:id],accept: false)
+  	@request = Relationship.find_by(id: params[:id],accepted: false)
   	if !@request.blank?
   		@request.update(accepted: true)
       redirect_to :back

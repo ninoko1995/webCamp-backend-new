@@ -48,12 +48,12 @@ class User < ApplicationRecord
   
   #userにfollowされているかどうかを判断する
   def followed_by?(user)
-    !passive_relationships.find_by(follower_id: user.id,accepted: true).blank?
+    !passive_relationships.find_by(follower_id: user.id).blank?
   end
 
   #フォロリクが送られていないかどうかを判断する
   def requested_by?(user)
-    !passive_relationships.find_by(follower_id: user.id,accepted: false).blank?
+    !require_relationships.find_by(follower_id: user.id).blank?
   end
 
 end
