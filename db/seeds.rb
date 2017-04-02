@@ -5,13 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create!(
-	name:'nino',
-	email: 'ninoko1995@yahoo.co.jp',
-	password: 'ninoninomiyamiya1995',
-	introduction: '管理者アカウントです'
-	)
-
 
 20.times do |i|
 	User.create!(
@@ -19,9 +12,20 @@ User.create!(
 		email: "user@#{i}",
 		password: "#{i}#{i}#{i}#{i}#{i}#{i}",
 		introduction: "週に#{i}冊は本読んでます！よろしくお願いします！"
+		if t%5 == 2
+			locked: true
+		end
 	 )
 
 end
+
+User.create!(
+	name:'nino',
+	email: 'ninoko1995@yahoo.co.jp',
+	password: 'ninoninomiyamiya1995',
+	introduction: '作成者アカウントです'
+	)
+
 
 1000.times do |i|
 	Book.create!(
@@ -36,16 +40,18 @@ end
 		if i != t
 			Relationship.create!(
 				follower_id: i+1,
-				followed_id: t+1
+				followed_id: t+1,
+				accepted: true
 				)
 		end
 	end
 end
 
 20.times do |t|
-	100.times do |i|
+	fav = rand(1..100)
+	fav.times do |i|
 		Favorite.create!(
-			book_id: (i+t+1)*6,
+			book_id: t+i*9+1,
 			user_id: t+1
 			)
 	end
