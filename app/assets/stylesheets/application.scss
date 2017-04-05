@@ -17,6 +17,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//initialization
+h1,h2,span,strong,p,div,html,body{
+	margin:0px;
+	border:0px;
+	padding:0px;
+}
+
+
 header{
 	color:white;
 	.navbar-left{
@@ -27,9 +35,18 @@ header{
 	}	
 }
 
+footer{
+	background-color:grey;
+	color:white;
+	bottom:0px;
+}
+
 .body{
 	margin-top:51px;
 	.btn-primary{
+		color:white;
+	}
+	.white{
 		color:white;
 	}
 }
@@ -38,3 +55,4 @@ header{
 	height:100px;
 	width:100px;
 }
+
