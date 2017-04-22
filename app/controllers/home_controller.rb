@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_action :log_in?
+  layout 'before_login'
 
   def top
   end
