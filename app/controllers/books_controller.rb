@@ -4,7 +4,15 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.page(params[:page])
+    # 鍵アカ投稿非表示
+     @books = []
+     User.all.each do |user|
+       if !user.locked
+         @books = @books , user.books
+       end
+     end
+     @books = Kaminari.paginate_array(@books.sort_by!{|book|book.created_at}).page(params[:page]) 
+    
   end
 
   # GET /books/1

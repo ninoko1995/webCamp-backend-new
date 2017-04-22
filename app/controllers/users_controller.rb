@@ -39,11 +39,11 @@ class UsersController < ApplicationController
 ##timeline機能は応用編であり、今回は課題としない
   def home
     @user = current_user
-    @books = Book.new
+    @books = []
     @user.followings.each do |user|
-      @books = @books , user.books
+      @books = @books + user.books
     end
-    @books = Kaminari.paginate_array(@books).page(params[:page])
+    @books = Kaminari.paginate_array(@books.sort_by!{|book|book.created_at}).page(params[:page])
   end
 
 
