@@ -10,6 +10,7 @@
 	        <% end %>
         </p>
         <%= link_to 'accept',accept_user_relationship_path(current_user.id,current_user.require_relationships.find_by(follower_id: user.id).id),class: 'btn btn-default' %>
+        <%= link_to 'reject',user_relationship_path(current_user.id,current_user.require_relationships.find_by(follower_id: user.id).id),method: :delete,class: 'btn btn-danger' %>
 			  <br>
 			  <br>
 			  <%= user.introduction %>

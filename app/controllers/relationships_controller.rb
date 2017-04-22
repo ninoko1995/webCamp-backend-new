@@ -10,7 +10,7 @@ class RelationshipsController < ApplicationController
           @relationship.accepted = true
         end
         if @relationship.save
-          redirect_to :back,notice: "you have successfully followed!" 
+          redirect_to :back
         else
           redirect_to :back,notice: "you failed to follow this account"
         end

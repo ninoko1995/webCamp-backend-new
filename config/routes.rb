@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 	  	get :follows
 	  	get :followers
       get :requires
+      get :home
 	  end
 
     #timeline実装用のrouting

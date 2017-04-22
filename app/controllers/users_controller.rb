@@ -36,7 +36,6 @@ class UsersController < ApplicationController
     @requires =   @user.requires
   end
 
-##timeline機能は応用編であり、今回は課題としない
   def home
     @user = current_user
     @books = []
