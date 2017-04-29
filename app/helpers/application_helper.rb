@@ -3,7 +3,7 @@ module ApplicationHelper
     if user.image?
       return user.image_url.to_s 
     else
-      return '/no_image.jpg'
+      return '/no-image.jpg'
     end
   end
 
@@ -12,6 +12,23 @@ module ApplicationHelper
       return user.image.thumb
     else
       return '/no-image-icon.jpg'
+    end
+  end
+
+  
+  def header_url(user)
+    if user.header_image?
+      return user.header_image_url.to_s 
+    else
+      return '/no-image-header1.jpg'
+    end
+  end
+
+  def modal_url(user)
+     if user.image?
+      return user.image.modal
+    else
+      return '/no-image-modal.jpg'
     end
   end
 

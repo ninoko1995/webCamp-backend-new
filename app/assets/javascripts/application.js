@@ -11,29 +11,33 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require turbolinks
 
-$(function(){
-//背景の高さ指定 
-      // var wH = $(window).height(); 
-      // var hH = $('header').height();
-      // var fH = $('footer').height();
-      // var bH = wH-fH-hH + 'px'
-      // $('.homeBody').css('height',bH); 
 
-//スライドショー設定
-      // $('.back1').removeClass('none');
-      // for(i=0;i>-1;i++){
-      //       $(".back"+i%4+1).addClass('none');
-      //       $(".back"+i%4+2).removeClass('none');      
-      // }
-      
-      
-});
+$(document).ready(js);
+$(document).on('page:load', js);
 
+function js(){
+ //アイコンのモーダル表示
+    $('#show-icon').click(
+      function(){
+        $('#icon-modal').css('display','block');
+        $('#icon-modal').css('width',$(window).width());
+        $('#icon-modal').css('height',$(window).height());
+      }
+    );
+
+    $('#icon-modal').click(
+      function(){
+        $('#icon-modal').css('display','none');
+      }
+    );
+};
+    
 
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({

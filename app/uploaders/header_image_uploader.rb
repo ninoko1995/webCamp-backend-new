@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class HeaderImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -22,18 +22,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # for profile image
-  process :resize_to_fit => [100, 100]
+  process :resize_to_fit => [1800, 200]
   
-  version :thumb do
-      process resize_to_limit: [40, 40]
-  end
-
-  version :modal do
-    process resize_to_limit: [400,400]
-  end
-    # def scale(width, height)
+  # Process files as they are uploaded:
+  # process scale: [200, 300]
+  #
+  # def scale(width, height)
   #   # do something
   # end
 

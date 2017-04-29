@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   
   def show
     @books = Kaminari.paginate_array(@user.books).page(params[:page])
+    render :layout => 'show'
   end
 
   def index
@@ -26,14 +27,17 @@ class UsersController < ApplicationController
 
   def followers
     @followers = @user.followers
+    render :layout => 'show'
   end
 
   def follows
     @follows = @user.followings
+    render :layout => 'show'
   end
 
   def requires
     @requires =   @user.requires
+    render :layout => 'show'
   end
 
   def home
@@ -56,7 +60,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-       params.require(:user).permit(:name, :introduction,:image,:locked)
+       params.require(:user).permit(:name, :introduction,:image,:locked,:header_image)
     end
 
     def check_correct_user

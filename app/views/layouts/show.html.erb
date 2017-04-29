@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebCampBackendNew</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= render 'layouts/header' %>
+
+  	<div class='body'>
+  	 	<%= image_tag header_url(@user),class: 'header-image'%>
+      
+      <div class='container'>
+        <% if !@book.blank? %>
+          <%= render 'layouts/errors',book:@book %>
+        <% end %>
+        
+        <p id="notice"><%= notice %></p>
+      
+      	<%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

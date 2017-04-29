@@ -9,7 +9,10 @@ class User < ApplicationRecord
   has_many :books
 
   #写真登録機能
+  #アイコン写真
   mount_uploader :image, ImageUploader 
+  #ヘッダー画像
+  mount_uploader :header_image, HeaderImageUploader 
   
   #favorite機能
   has_many :favorites

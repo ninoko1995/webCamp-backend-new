@@ -4,19 +4,22 @@
 <%   now != 'followers' ? @wer = 'default': @wer =  'primary'%>
 <%   now != 'requires' ? @ire = 'default': @ire =  'primary'%>
 
+  <!-- modal用 -->
+  <div id='icon-modal'><%= image_tag modal_url(user)%></div>
+
+  
     <table class="table">
-      <tr><td><%= image_tag profile_url(user) %></td></tr> 
-      <tr><td>name : <%= user.name %>
+      <tr><td><%= image_tag profile_url(user)  ,id: 'show-icon'%></td></tr> 
+      <tr><td><%= link_to user do %><strong><%= user.name %></strong>
         <% if user.locked %>
           <span class='glyphicon glyphicon-lock'></span>
-        <% end %>
+        <% end %><% end %>
       </td></tr>
-      <tr><td>introduction</td></tr>
-    	<tr><td> <%= user.introduction %></td></tr>
+    	<tr><td><%= user.introduction %></td></tr>
     </table>
-    
+
     <div class="row">
-      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-xs-6" %>
+      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-xs-6"%>
 
       <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-xs-6" %>
 
