@@ -16,25 +16,14 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-
 $(document).ready(function(){
+//背景の高さ指定 
+    var wH = $(window).height(); 
+    var hH = $('header').height();
+    var fH = $('footer').height();
+    var bH = wH-fH-hH + 'px'
 
-            $("#theTarget").skippr();
+    $('#theTarget').css('height',bH); 
 
-});
-
-
-// Defaults   
-$("#theTarget").skippr({
-
-            transition: 'slide',
-            speed: 1000,
-            easing: 'easeOutQuart',
-            navType: 'block',
-            childrenElementType: 'div',
-            arrows: true,
-            autoPlay: false,
-            autoPlayDuration: 5000,
-            keyboardOnAlways: true,
-            hidePrevious: false
+//スライドショー設定
 });

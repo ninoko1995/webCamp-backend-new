@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//header
 header{
 	color:white;
 	.navbar-left{
@@ -27,14 +28,19 @@ header{
 	}	
 }
 
+//footer
+footer{
+	color:white;
+	background-color:rgba(0,0,0,0.3);
+}
+
 .body{
 	margin-top:51px;
-	.btn-primary{
-		color:white;
-	}
+	color:white;
 }
 
 .index-icon{
 	height:100px;
 	width:100px;
 }
+

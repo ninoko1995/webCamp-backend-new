@@ -7,20 +7,19 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
   </head>
 
   <body>
 
     <%= render 'layouts/header' %>
 
-  	<div class='body' id='theTarget'>
-  		<div style='background-image:url(../../assets/images/back1.jpg);'></div>
-  		<div style='background-image:url(../../assets/images/back3.jpg);'></div>
-  		<div style='background-image:url(../../assets/images/back4.jpg);'></div>
-  		<div style='background-image:url(../../assets/images/back5.jpg);'></div>
+  	<div class='body'>
+  		<%= image_tag('back1.jpg') %>
+  		<%= image_tag('back3.jpg') %>
+  		<%= image_tag('back4.jpg') %>
+  		<%= image_tag('back5.jpg') %>
 
-      <div class='container'>
+  		<div class='container'>
 
         <p id="notice"><%= notice %></p>
       	
@@ -30,7 +29,5 @@
 
     <%= render 'layouts/footer' %>
 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="skippr.js"></script>
   </body>
 </html>
