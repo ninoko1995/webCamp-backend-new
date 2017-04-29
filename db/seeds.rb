@@ -9,7 +9,7 @@ book = ["村上海賊の娘","昨夜のカレー、明日のパン","島はぼ�
 
 book_num = book.length
 puts book_num
-user_num = 10
+user_num = 100
 
 (user_num-1).times do |i|
 	User.create!(
