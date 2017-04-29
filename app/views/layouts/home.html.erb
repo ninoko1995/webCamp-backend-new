@@ -13,21 +13,26 @@
 
     <%= render 'layouts/header' %>
 
-    <div class='body' id='theTarget'>
-      <%= image_tag('back1.jpg') %>
-      <%= image_tag('back3.jpg') %>
-      <%= image_tag('back4.jpg') %>
-      <%= image_tag('back5.jpg') %>
-
+    <div class='body homeBody'>
+      <div id='container'>
+        <div id='theTarget'>
+          <%= image_tag 'back1.jpg' %>
+          <%= image_tag 'back2.jpg' %>
+          <%= image_tag 'back3.jpg' %>
+          <%= image_tag 'back4.jpg' %>
+        </div>
+      </div>
       <div class='container'>
-
         <p id="notice"><%= notice %></p>
-        
-        <%= yield %>
+        <div class='flame'>
+          <%= yield %>
+        </div>
       </div>
     </div>
 
     <%= render 'layouts/footer' %>
 
+    
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

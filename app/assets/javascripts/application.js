@@ -16,14 +16,45 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-$(document).ready(function(){
+$(function(){
 //背景の高さ指定 
-    var wH = $(window).height(); 
-    var hH = $('header').height();
-    var fH = $('footer').height();
-    var bH = wH-fH-hH + 'px'
-
-    $('#theTarget').css('height',bH); 
+      // var wH = $(window).height(); 
+      // var hH = $('header').height();
+      // var fH = $('footer').height();
+      // var bH = wH-fH-hH + 'px'
+      // $('.homeBody').css('height',bH); 
 
 //スライドショー設定
+      // $('.back1').removeClass('none');
+      // for(i=0;i>-1;i++){
+      //       $(".back"+i%4+1).addClass('none');
+      //       $(".back"+i%4+2).removeClass('none');      
+      // }
+      
+      
+});
+
+
+// オプションを指定してSkipprの実行
+$("#theTarget").skippr({
+    // スライドショーの変化 ("fade" or "slide")
+    transition : 'fade',
+    // 変化に係る時間(ミリ秒)
+    speed : 1000,
+    // easingの種類
+    easing : 'easeOutQuart',
+    // ナビゲーションの形("block" or "bubble")
+    navType : 'block',
+    // 子要素の種類("div" or "img")
+    childrenElementType : 'img',
+    // ナビゲーション矢印の表示(trueで表示)
+    arrows : false,
+    // スライドショーの自動再生(falseで自動再生なし)
+    autoPlay : true,
+    // 自動再生時のスライド切替間隔(ミリ秒)
+    autoPlayDuration : 5000,
+    // キーボードの矢印キーによるスライド送りの設定(trueで有効)
+    keyboardOnAlways : true,
+    // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
+    hidePrevious : false
 });
