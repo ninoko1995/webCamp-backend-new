@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout 'home.html.erb'
   before_action :log_in?
 
   def top
