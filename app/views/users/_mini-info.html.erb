@@ -1,0 +1,17 @@
+    
+	<div class='row'> 
+    <div class='tl-info' style='background-image:url(<%= header_url(user) %>);'>
+    	<%= image_tag profile_url(user)%>
+      <%= link_to user,class: 'tl-name' do  %><strong><%= user.name %></strong>
+        <% if user.locked %>
+          <span class='glyphicon glyphicon-lock'></span>
+        <% end %>
+      <% end %></p>
+</div>
+      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-default col-xs-12"%>
+      
+      <%= link_to "#{user.followings.count} followings",follows_user_path(user),class: "btn btn-default col-xs-6" %>
+      <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: "btn btn-default col-xs-6" %>
+
+
+ 	</div>
