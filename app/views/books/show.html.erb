@@ -27,7 +27,7 @@
             <% if Favorite.find_by(user_id: current_user.id,book_id: @book.id).nil? %>
               <%= link_to "", book_favorites_path(@book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%>
             <% else %>
-              <%= link_to "", book_favorites_path(@book), method: :delete,class: 'glyphicon glyphicon-heart' %>
+              <%= link_to "", book_favorites_path(@book), method: :delete,class: 'glyphicon glyphicon-heart',style: 'color:orange;' %>
             <% end %>
             <%= @book.favorites.count %>
             <% if @book.favorites.count != 0 %>

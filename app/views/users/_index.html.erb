@@ -19,7 +19,7 @@
 		        <%= link_to "Following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary user-index-btn",remote: true %>
 		      <% else %>
 		        <% if user.requested_by?(current_user) %>
-		          <span class='btn btn-info user-index-btn'>Requesting</span>
+		        	<%= link_to "Requesting",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn btn-info user-index-btn",remote: true %>
 		        <% else %>
 		          <%= link_to "Follow",user_relationships_path(user.id),method: :post,class: "btn btn-default user-index-btn",remote: true %>
 		        <% end %>
