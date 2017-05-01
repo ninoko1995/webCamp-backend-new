@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429161726) do
+ActiveRecord::Schema.define(version: 20170429221718) do
+
+  create_table "book_types", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -36,6 +43,13 @@ ActiveRecord::Schema.define(version: 20170429161726) do
     t.index ["user_id", "book_id"], name: "index_favorites_on_user_id_and_book_id", unique: true
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "followed_id"
     t.integer  "follower_id"
@@ -43,6 +57,12 @@ ActiveRecord::Schema.define(version: 20170429161726) do
     t.datetime "updated_at",  null: false
     t.boolean  "accepted"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,7 +1,9 @@
     
 	<div class='row'> 
-    <div class='tl-info' style='background-image:url(<%= header_url(user) %>);'>
-    	<%= image_tag profile_url(user)%>
+    <div class='tl-info' style='background-image:url(<%= header_url_tl(user) %>);'>
+      <%= link_to user do %>
+    	 <%= image_tag profile_url(user)%>
+      <% end %>
       <%= link_to user,class: 'tl-name' do  %><strong><%= user.name %></strong>
         <% if user.locked %>
           <span class='glyphicon glyphicon-lock'></span>

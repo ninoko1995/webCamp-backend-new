@@ -1,7 +1,7 @@
   <%= form_for(user) do |f| %>
     <% if user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(user.errors.count, "error") %> prohibited this edit from being saved:</h2>
+      <div id='error_explanation'>
+        <h2><%= pluralize(user.errors.count, 'error') %> prohibited this edit from being saved:</h2>
 
         <ul>
         <% user.errors.full_messages.each do |message| %>
@@ -11,32 +11,32 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class='field'>
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
 
-    <div class="field">
+    <div class='field'>
       <%= f.label :'make accouut locked?' %>
       <%= f.check_box :locked, {}, 'true', 'false' %>
     </div>
 
-    <div class="field">
+    <div class='field'>
       <%= f.label :image %>
       <%= f.file_field :image %>
     </div>
 
-    <div class="field">
+    <div class='field'>
       <%= f.label :header_image %>
       <%= f.file_field :header_image %>
     </div>
 
-    <div class="field">
+    <div class='field'>
       <%= f.label :introduction %>
       <%= f.text_area :introduction %>
     </div>
 
-    <div class="actions">
+    <div class='actions'>
       <%= f.submit %>
     </div>
   <% end %>

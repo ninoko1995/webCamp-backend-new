@@ -1,7 +1,7 @@
 module ApplicationHelper
 	def profile_url(user)
     if user.image?
-      return user.image_url.to_s 
+      return user.image.profile
     else
       return '/no-image.jpg'
     end
@@ -20,13 +20,21 @@ module ApplicationHelper
     if user.header_image?
       return user.header_image_url.to_s 
     else
-      return '/no-image-header1.jpg'
+      return '/no-image-header.jpg'
+    end
+  end
+
+   def header_url_tl(user)
+    if user.header_image?
+      return user.header.image.tl.to_s 
+    else
+      return '/no-image-header-tl.jpg'
     end
   end
 
   def modal_url(user)
      if user.image?
-      return user.image.modal
+      return user.image_url.to_s
     else
       return '/no-image-modal.jpg'
     end

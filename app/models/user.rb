@@ -8,6 +8,10 @@ class User < ApplicationRecord
   #投稿機能
   has_many :books
 
+  #興味による検索機能
+  has_many :intrests
+  has_many :types,through: :inerests
+
   #写真登録機能
   #アイコン写真
   mount_uploader :image, ImageUploader 

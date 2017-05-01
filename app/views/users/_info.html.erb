@@ -7,7 +7,8 @@
   <!-- modal用 -->
   <div id='icon-modal'><%= image_tag modal_url(user)%></div>
 
-  
+  <!-- normalなinfo -->
+  <div id='normal'>
     <table class="table">
       <tr><td><%= image_tag profile_url(user)  ,id: 'show-icon'%></td></tr> 
       <tr><td><%= link_to user do %><strong><%= user.name %></strong>
@@ -18,13 +19,14 @@
     	<tr><td><%= user.introduction %></td></tr>
     </table>
 
+    <!-- normal -->
     <div class="row">
       <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-xs-6"%>
 
       <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-xs-6" %>
 
       <% if correct_user?(user) %>
-        <%= link_to "",edit_user_path(user),class: "btn btn-default col-xs-4 glyphicon glyphicon-wrench" %>
+        <p class="btn btn-default col-xs-4 glyphicon glyphicon-wrench" id= 'edit-profile' ></p>
       <% else %>
         <% if user.followed_by?(current_user) %>
           <%= link_to "following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary col-xs-4",remote: true %>
@@ -42,8 +44,27 @@
       <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: "btn btn-#{@wer} col-xs-4" %>
       <% if user.locked && user == current_user%>
         <%= link_to "#{user.requires.count} requires",requires_user_path(user) , class: "btn btn-#{@ire} col-xs-12"%>
-      <% end %>
-
-
-      
+      <% end %>  
     </div>
+  </div>
+
+
+
+  <!-- user編集用のform -->
+  
+  <div id='profile-edit'>
+    <%= form_for(user) do |f| %>
+      <table class='table user-edit-table'>
+        <tr><td><%= image_tag profile_url(user)%><%= f.file_field :image %></td></tr> 
+        <tr><td><%= f.text_field :name %><span class='glyphicon glyphicon-lock'></span><%= f.check_box :locked, {}, 'true', 'false' %></td></tr>
+        <tr><td><%= f.text_area :introduction %></td></tr>
+      </table>
+
+
+      <!--user編集用  -->
+      <div class="button">
+        <%= f.submit :class => "btn btn-default" %>
+        <span class="btn btn-danger" id='cancel-profile'>cancel</span> 
+      </div>
+    <% end %>
+  </div>

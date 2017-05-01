@@ -17,27 +17,41 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 
+//ここら辺、ページ遷移後にjs効かせようと苦戦した跡
+//$('body').ready(show_modal);
+//$(document).on('page:change', modal);
+//jQuery(show_modal);
 
-$(document).ready(js);
-$(document).on('page:load', js);
+$(document).on('click', '#icon-modal', del_icon);
+$(document).on('click','#show-icon', show_icon);
 
-function js(){
- //アイコンのモーダル表示
-    $('#show-icon').click(
-      function(){
-        $('#icon-modal').css('display','block');
-        $('#icon-modal').css('width',$(window).width());
-        $('#icon-modal').css('height',$(window).height());
-      }
-    );
+$(document).on('click','#edit-profile',edit_profile);
+$(document).on('click','#cancel-profile',cancel_profile);
 
-    $('#icon-modal').click(
-      function(){
-        $('#icon-modal').css('display','none');
-      }
-    );
-};
-    
+//ユーザープロフィール編集モーダル表示
+function edit_profile(){
+    $('#profile-edit').css('display','block');
+    $('#normal').css('display','none'); 
+}
+//プロフィール編集を閉じる
+function cancel_profile(){
+    $('#profile-edit').css('display','none');
+    $('#normal').css('display','block'); 
+}
+
+
+
+//アイコンのモーダル表示
+function show_icon(){
+    $('#icon-modal').css('display','block');
+    $('#icon-modal').css('width',$(window).width());
+    $('#icon-modal').css('height',$(window).height());
+}
+
+//アイコンのモーダル非表示
+function del_icon(){
+    $('#icon-modal').css('display','none');
+}
 
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({

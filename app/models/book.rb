@@ -5,6 +5,10 @@ class Book < ApplicationRecord
 	#投稿機能
 	belongs_to :user
 
+	#本の種類に夜検索機能
+	has_many :book_types
+	has_many :types,through: :book_types
+
 	#favorite機能
 	has_many :favorites, :dependent => :destroy
 	has_many :favors,through: :favorites,
