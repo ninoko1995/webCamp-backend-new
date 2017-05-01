@@ -22,11 +22,31 @@
 //$(document).on('page:change', modal);
 //jQuery(show_modal);
 
+//show icon
 $(document).on('click', '#icon-modal', del_icon);
 $(document).on('click','#show-icon', show_icon);
 
+//user edit
 $(document).on('click','#edit-profile',edit_profile);
 $(document).on('click','#cancel-profile',cancel_profile);
+
+//new book
+$(document).on('click','#new-book',new_book);
+$(document).on('click','#cancel-book',cancel_book);
+
+
+//新しい本を投稿
+function new_book(){
+    $('#book-new').css('display','block');
+    $('#book-new').css('width',$(window).width());
+    $('#book-new').css('height',$(window).height());
+}
+//投稿をキャンセル
+function cancel_book(){
+    $('#book-new').css('display','none');
+}
+
+
 
 //ユーザープロフィール編集モーダル表示
 function edit_profile(){
