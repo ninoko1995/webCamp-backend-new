@@ -1,32 +1,34 @@
 <div class='row'>
   <% users.each do |user| %>
-    <div class='col-lg-3'>
-    		<div class = 'index-icon'>
-		      <%= link_to(user) do %>
-		        <%= image_tag profile_url(user) %><br>
-		      <% end %>
-		    </div>
-	      <p><%= user.name %>
-	      	<% if user.locked %>
+    
+    <div class='col-lg-4 user-index'>
+    	<div class='tl-info' style='background-image:url(<%= header_url_tl(user) %>);'>
+	      <%= link_to user do %>
+	    	 <%= image_tag profile_url_thumb(user) , class: 'icon-image'%>
+	      <% end %>
+	    	
+	    	<br><br>
+	 			<%= link_to user do  %><strong><%= user.name %></strong>
+	        <% if user.locked %>
 	          <span class='glyphicon glyphicon-lock'></span>
 	        <% end %>
-        </p>
-	      <% if current_user.id != user.id %>
-	      	<% if user.followed_by?(current_user) %>
-	          <%= link_to "Following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary",remote: true %>
-	        <% else %>
-	          <% if user.requested_by?(current_user) %>
-	            <span class='btn btn-info'>Requesting</span>
-	          <% else %>
-	            <%= link_to "Follow",user_relationships_path(user.id),method: :post,class: "btn btn-default",remote: true %>
-	          <% end %>
-	        <% end %>
-			  <% end %>
-			  <br>
-			  <br>
-			  <%= user.introduction %>
-			  <br>
-			  <br>
-    </div>
-  <% end %>
+	      <% end %>
+
+		    <% if current_user.id != user.id %>
+		    	<% if user.followed_by?(current_user) %>
+		        <%= link_to "Following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary user-index-btn",remote: true %>
+		      <% else %>
+		        <% if user.requested_by?(current_user) %>
+		          <span class='btn btn-info user-index-btn'>Requesting</span>
+		        <% else %>
+		          <%= link_to "Follow",user_relationships_path(user.id),method: :post,class: "btn btn-default user-index-btn",remote: true %>
+		        <% end %>
+		      <% end %>
+				<% end %>
+			</div>
+			<br>
+			<%= user.introduction %>
+  	</div>
+
+	<% end %>
 </div>

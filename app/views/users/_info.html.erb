@@ -10,7 +10,7 @@
   <!-- normalなinfo -->
   <div id='normal'>
     <table class="table">
-      <tr><td><%= image_tag profile_url(user)  ,id: 'show-icon'%></td></tr> 
+      <tr><td><%= image_tag profile_url(user)  ,id: 'show-icon',class: 'icon-image'%></td></tr> 
       <tr><td><%= link_to user do %><strong><%= user.name %></strong>
         <% if user.locked %>
           <span class='glyphicon glyphicon-lock'></span>
