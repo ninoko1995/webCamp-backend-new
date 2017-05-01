@@ -51,7 +51,7 @@ class User < ApplicationRecord
  	#validation
   validates :name ,presence: true , length: {maximum: 10 , minimum: 2}
 
-  validates :introduction , length: {maximum: 50}
+  validates :introduction , length: {maximum: 150}
   
   #userにfollowされているかどうかを判断する
   def followed_by?(user)
