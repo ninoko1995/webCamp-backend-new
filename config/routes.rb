@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 	devise_for :users, :controllers => {
  :registrations => 'users/registrations',
  :sessions => 'users/sessions',
@@ -17,14 +18,14 @@ Rails.application.routes.draw do
 	  	get :follows
 	  	get :followers
       get :requires
-      get :home
 	  end
 
-    #timeline実装用のrouting
-    # collection do
-    #   get :home
-    # end
+    collection do
+      get :home
+    end
+
   end
+
 
   resources :books do
   	resource :favorites,only:[:create,:destroy]
@@ -33,8 +34,14 @@ Rails.application.routes.draw do
       get :favors
     end
   end
+  
+  # 本の種類に関しての機能
+  resources :interests,only: [:create,:destroy]
+
+
+  # ログイン前の画面のルーティング
   root 'home#top'
-  get 'home/about'
+  get 'about'=>'home#about'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

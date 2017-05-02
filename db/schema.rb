@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170429221718) do
     t.integer  "type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id", "type_id"], name: "index_book_types_on_book_id_and_type_id", unique: true
   end
 
   create_table "books", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170429221718) do
     t.integer  "type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "type_id"], name: "index_interests_on_user_id_and_type_id", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|

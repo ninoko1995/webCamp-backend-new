@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :books
 
   #興味による検索機能
-  has_many :intrests
-  has_many :types,through: :inerests
+  has_many :interests
+  has_many :types,through: :interests
 
   #写真登録機能
   #アイコン写真

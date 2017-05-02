@@ -21,6 +21,7 @@
 
     <!-- normal -->
     <div class="row">
+      <h4>Data</h4>
       <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-xs-6"%>
 
       <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-xs-6" %>
@@ -32,7 +33,7 @@
           <%= link_to "following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary col-xs-4",remote: true %>
         <% else %>
           <% if user.requested_by?(current_user) %>
-            <%= link_to 'requesting',user_relationship_path(current_user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id,accepted: false).id),method: :delete,class: 'btn btn-info col-xs-4' %>
+            <%= link_to 'requesting',user_relationship_path(current_user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id,accepted: false).id),method: :delete,class: 'btn btn-info col-xs-4 disable' %>
           <% else %>
             <%= link_to "follow",user_relationships_path(user.id),method: :post,class: "btn btn-default col-xs-4",remote: true %>
           <% end %>
@@ -47,8 +48,6 @@
       <% end %>  
     </div>
   </div>
-
-
 
   <!-- user編集用のform -->
   
@@ -68,3 +67,7 @@
       </div>
     <% end %>
   </div>
+
+  <br>
+  
+  <div><%= render 'interests/index' , user: user %></div>

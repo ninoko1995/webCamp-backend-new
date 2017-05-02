@@ -6,5 +6,6 @@ class CreateInterests < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :interests, [:user_id, :type_id], unique: true
   end
 end

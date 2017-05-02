@@ -95,7 +95,6 @@ a:hover{
 
 
 
-
 .body{
 	padding-top:51px;
 }
@@ -114,7 +113,7 @@ a:hover{
 	border-radius:5px 5px 0 0;
 	position:relative;
 	padding-left:20px;
-	padding-top:45px;
+	padding-top:40px;
 	margin-bottom:30px;
 }
 .tl-name{
@@ -127,7 +126,7 @@ a:hover{
 }
 .icon-image{
 	border-radius:5px;
-	border:white solid 2px;
+	border:rgba(240,240,240,1) solid 2px;
 }
 
 
@@ -157,4 +156,15 @@ a:hover{
 	left:0;
 	background-color:rgba(0,0,0,0.7);
 	z-index:1;
+}
+
+//new interest
+#interest-new{
+	display:none;
+}
+#cancel-interest{
+	display:none;
+}
+.remove-interest{
+	color:transparent;
 }

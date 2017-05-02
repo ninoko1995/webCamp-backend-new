@@ -1,0 +1,39 @@
+<div class='interest row'>
+	<!-- 自分のページを見てるかどうかで、好きな本のジャンルを編集するボタンを置くかどうか決める -->
+  <% if current_user.id == params[:id].to_i || current_user.id == params[:user_id].to_i %>
+
+	  <h4>favarite Genro</h4>
+		
+		<div>  
+		  <% user.interests.preload(:type).each do |interest| %>
+		    <button class='interest-btn  btn btn-default btn-sm'>
+		    	<%= interest.type.category %>
+		    	<%= link_to interest_path(interest),method: :delete,remote: true  do %>
+		    		<span class='glyphicon glyphicon-remove-circle remove-interest'></span>
+		    	<% end %>
+		    </button>
+		  <% end %>
+		</div>
+	  <button id='add-interest' class='glyphicon glyphicon-plus btn btn-xs'></button>
+	  <button id='cancel-interest' class='glyphicon glyphicon-minus btn btn-xs'></button>
+
+	  <div id='interest-new'>
+		  <%= form_tag(interests_path,method: :post) do %>
+				<%= collection_select(:interest,:type_id, Type.all, :id, :category, include_blank: true) %>
+				
+			  <%= submit_tag "登録" ,class: 'btn btn-primary'%>
+			<% end %> 
+		</div>
+
+	<% else  %>
+
+		<h4>favarite Genro</h4>
+	  <% user.interests.preload(:type).each do |interest| %>
+	    <button class='interest-btn btn btn-default btn-sm'>
+	    	<%= interest.type.category %>
+	    </button>
+	  <% end %>
+
+	<% end %>
+
+</div>

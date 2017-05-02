@@ -34,6 +34,29 @@ $(document).on('click','#cancel-profile',cancel_profile);
 $(document).on('click','#new-book',new_book);
 $(document).on('click','#cancel-book',cancel_book);
 
+//new interest
+$(document).on('click','#add-interest',add_interest);
+$(document).on('click','#cancel-interest',cancel_interest);
+$(document).on({
+"mouseenter": function(){$(this).find('.remove-interest').css('color','red')},
+"mouseleave": function(){$(this).find('.remove-interest').css('color','transparent')}
+}, ".interest-btn");
+
+
+
+
+//interest登録の画面
+function add_interest(){
+    $('#interest-new').css('display','block');
+    $(this).css('display','none');
+    $('#cancel-interest').css('display','inline');
+}
+function cancel_interest(){
+    $('#interest-new').css('display','none');
+    $(this).css('display','none');
+    $('#add-interest').css('display','inline');
+}
+
 
 //新しい本を投稿
 function new_book(){
@@ -52,11 +75,14 @@ function cancel_book(){
 function edit_profile(){
     $('#profile-edit').css('display','block');
     $('#normal').css('display','none'); 
+    $('.interest').css('display','none'); 
+
 }
 //プロフィール編集を閉じる
 function cancel_profile(){
     $('#profile-edit').css('display','none');
     $('#normal').css('display','block'); 
+    $('.interest').css('display','block'); 
 }
 
 

@@ -6,5 +6,6 @@ class CreateBookTypes < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :book_types, [:book_id, :type_id], unique: true
   end
 end

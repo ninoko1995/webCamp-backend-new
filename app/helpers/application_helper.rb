@@ -11,7 +11,7 @@ module ApplicationHelper
     if user.image?
       return user.image.profile_mini
     else
-      return '/no-image.jpg'
+      return '/no-image-mini.jpg'
     end
   end
 
