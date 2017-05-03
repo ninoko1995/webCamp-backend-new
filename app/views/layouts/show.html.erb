@@ -13,7 +13,11 @@
     <%= render 'layouts/header' %>
 
   	<div class='body'>
-      <div class='header-image' style="background-image:url(<%= header_url(@user)%>);background-size:cover;"></div>
+      <div class='header-image' style="background-image:url(<%= header_url(@user)%>);background-size:cover;">
+        <div>
+          
+        </div>
+      </div>
 
       <div class='container'>
         <% if !@book.blank? %>

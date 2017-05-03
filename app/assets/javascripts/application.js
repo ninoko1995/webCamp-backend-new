@@ -42,6 +42,25 @@ $(document).on({
 "mouseleave": function(){$(this).find('.remove-interest').css('color','transparent')}
 }, ".interest-btn");
 
+//edit header image
+$(document).on('click','.header-image',show_header);
+$(document).on('click','#cancel-interest',cancel_header);
+
+
+
+
+
+//headerのモーダル表示
+function show_header(){
+    $('').css('display','block');
+    $('').css('width',$(window).width());
+    $('').css('height',$(window).height());
+}
+//headerのモーダル非表示
+function cancel_icon(){
+    $('').css('display','none');
+}
+
 
 
 

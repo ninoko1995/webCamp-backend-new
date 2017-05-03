@@ -49,24 +49,7 @@
     </div>
   </div>
 
-  <!-- user編集用のform -->
-  
-  <div id='profile-edit'>
-    <%= form_for(user) do |f| %>
-      <table class='table user-edit-table'>
-        <tr><td><%= image_tag profile_url(user)%><%= f.file_field :image %></td></tr> 
-        <tr><td><%= f.text_field :name %><span class='glyphicon glyphicon-lock'></span><%= f.check_box :locked, {}, 'true', 'false' %></td></tr>
-        <tr><td><%= f.text_area :introduction %></td></tr>
-      </table>
-
-
-      <!--user編集用  -->
-      <div class="button">
-        <%= f.submit :class => "btn btn-default" %>
-        <span class="btn btn-danger" id='cancel-profile'>cancel</span> 
-      </div>
-    <% end %>
-  </div>
+  <%= render 'users/form' , user: user %>
 
   <br>
   

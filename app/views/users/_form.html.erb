@@ -1,42 +1,29 @@
+<% if user.errors.any? %>
+  <div id='error_explanation'>
+    <h2><%= pluralize(user.errors.count, 'error') %> prohibited this edit from being saved:</h2>
+    <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<!-- user編集用のform -->
+  
+<div id='profile-edit'>
   <%= form_for(user) do |f| %>
-    <% if user.errors.any? %>
-      <div id='error_explanation'>
-        <h2><%= pluralize(user.errors.count, 'error') %> prohibited this edit from being saved:</h2>
+    <table class='table user-edit-table'>
+      <tr><td><%= image_tag profile_url(user)%><%= f.file_field :image %></td></tr> 
+      <tr><td><%= f.text_field :name %><span class='glyphicon glyphicon-lock'></span><%= f.check_box :locked, {}, 'true', 'false' %></td></tr>
+      <tr><td><%= f.text_area :introduction %></td></tr>
+    </table>
 
-        <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
 
-    <div class='field'>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-
-    <div class='field'>
-      <%= f.label :'make accouut locked?' %>
-      <%= f.check_box :locked, {}, 'true', 'false' %>
-    </div>
-
-    <div class='field'>
-      <%= f.label :image %>
-      <%= f.file_field :image %>
-    </div>
-
-    <div class='field'>
-      <%= f.label :header_image %>
-      <%= f.file_field :header_image %>
-    </div>
-
-    <div class='field'>
-      <%= f.label :introduction %>
-      <%= f.text_area :introduction %>
-    </div>
-
-    <div class='actions'>
-      <%= f.submit %>
+    <!--user編集用  -->
+    <div class="button">
+      <%= f.submit :class => "btn btn-default" %>
+      <span class="btn btn-danger" id='cancel-profile'>cancel</span> 
     </div>
   <% end %>
+</div>
