@@ -1,77 +1,17 @@
 <div class='row'>
-
   <div class='col-xs-3'>
     <h2>User info</h2>
     <%= render 'users/info', user: @user,now: ''%>
-
-    <h2>New book</h2>
-    <%= render 'form', book: Book.new %>
   </div>
   
 
   <div class='col-xs-9'>
 		<h2>Book detail</h2>
     <% if @accepted%>
-  		
-      <table class='table'>
-  		  <tr>
-          <td><%= link_to(@user) do %>
-            <%= image_tag profile_url_thumb(@book.user) %><br>
-            <%= @book.user.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @book.title,@book %></td>
-          <td><%= @book.body %></td>
+      <%= render 'books/info' ,book: @book,user: @user %>
 
-          <td>
-            <% if Favorite.find_by(user_id: current_user.id,book_id: @book.id).nil? %>
-              <%= link_to "", book_favorites_path(@book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%>
-            <% else %>
-              <%= link_to "", book_favorites_path(@book), method: :delete,class: 'glyphicon glyphicon-heart',style: 'color:orange;' %>
-            <% end %>
-            <%= @book.favorites.count %>
-            <% if @book.favorites.count != 0 %>
-              <%= link_to 'いいね!',favors_book_path(@book) %>
-            <% else %>
-              いいね!
-            <% end %>
-          </td>
-
-          <% if correct_user?(@user) %>
-            <td><%= link_to 'Edit', edit_book_path(@book) %></td>
-            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
-          <% end %>
-        </tr>
-      </table>
-
-      <h3>Comments</h3>
-      <table class='table'>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td><%= link_to(comment.user) do %>
-            <%= image_tag profile_url_thumb(comment.user) %><br>
-            <%= comment.user.name %>
-            <% end %>
-            </td>
-            <td><%= comment.body %></td>
-
-            <% if correct_user?(comment.user) %>
-              <td><%= link_to 'Destroy',[@book, comment], method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
-
-          <% end %>
-          </tr>
-        <% end %>
-  		</table>
-
-      <%= form_for([@book,Comment.new]) do |f| %>
-        <div class="field row">
-          <%= f.text_area :body ,class: 'col-lg-11 col-lg-offset-1'%>
-        </div>
-
-        <div class="actions row">
-          <%= f.submit class: 'btn btn-primary col-lg-11 col-lg-offset-1'%>
-        </div>
-      <% end %>
+      <%= render 'comments/index' , comments: @comments %>
+      <%= render 'comments/form' , book: @book %>      
     
     <% else %>
       <%= render 'layouts/protected' %>

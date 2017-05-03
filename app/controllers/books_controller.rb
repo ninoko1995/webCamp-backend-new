@@ -1,12 +1,13 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy,:favors]
   before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
+  before_action :check_correct_user,only: [:update,:destroy]
   # GET /books
   # GET /books.json
   def index
     # 鍵アカ投稿非表示
      @books = []
-     User.all.each do |user|
+     User.all.include(:books).each do |user|
        if !user.locked
          @books = @books + user.books
        end
@@ -32,6 +33,7 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.build(book_params)
     if @book.save
+      @book.book_types.create(type_params)
       redirect_to @book, notice: 'Book was successfully created.' 
     else
       @books = Book.page(params[:page])
@@ -43,6 +45,7 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1.json
   def update
     if @book.update(book_params)
+      @book.book_types.create(type_params)
       redirect_to @book, notice: 'Book was successfully updated.' 
     else
       render :edit
@@ -58,7 +61,9 @@ class BooksController < ApplicationController
 
 
   def favors
+    @user = @book.user
     @favors = @book.favors
+    accepted_user?(@user)
   end
 
   private
@@ -67,9 +72,21 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
+    def check_correct_user
+      set_book
+      @user = @book.user
+      if !correct_user?(@user)
+        render :show
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:title, :body)
+    end
+
+     def type_params
+      params.require(:book_type).permit(:type_id)
     end
 
     

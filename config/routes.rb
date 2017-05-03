@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   # 本の種類に関しての機能
   resources :interests,only: [:create,:destroy]
 
+  resources :book_types,only: [:destroy]
+
 
   # ログイン前の画面のルーティング
   root 'home#top'

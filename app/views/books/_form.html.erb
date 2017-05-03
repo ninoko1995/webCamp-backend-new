@@ -1,16 +1,33 @@
-<%= form_for(book) do |f| %>
-  <div class="field row">
-    <%= f.label :title %>
+<div class='new-book'>
+  <%= form_for(book) do |f| %>
+    <div class="field row">
+      <%= f.label :title %>
 
-    <%= f.text_field :title,class: 'col-xs-12' %>
-  </div>
+      <%= f.text_field :title,class: 'col-xs-12' %>
+    </div>
 
-  <div class="field row">
-    <%= f.label :opinion %>
-    <%= f.text_area :body ,class: 'col-xs-12'%>
-  </div>
+    <div class="field row">
+      <%= f.label :opinion %>
+      <%= f.text_area :body ,class: 'col-xs-12'%>
+    </div>
 
-  <div class="actions row">
-    <%= f.submit class: 'btn btn-primary col-xs-12'%>
-  </div>
-<% end %>
+    <div>
+      <% book.book_types.preload(:type).each do |book_type| %>
+          <button class='interest-btn  btn btn-default btn-sm'>
+          <%= book_type.type.category %>
+          <%= link_to book_type_path(book_type),method: :delete,remote: true  do %>
+            <span class='glyphicon glyphicon-remove-circle remove-interest'></span>
+          <% end %>
+          </button>
+      <% end %>
+    </div>
+
+    <%= f.label :book_type %>
+    <%= collection_select(:book_type,:type_id, Type.all, :id, :category, include_blank: true) %>
+      
+
+    <div class="actions row">
+      <%= f.submit class: 'btn btn-primary col-xs-12'%>
+    </div>
+  <% end %>
+</div>

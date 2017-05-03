@@ -1,5 +1,5 @@
 <div class='row'>
-  <% users.each do |user| %>
+  <% users.preload(:passive_relationships,:require_relationships).each do |user| %>
     
     <div class='col-lg-4 user-index'>
     	<div class='tl-info' style='background-image:url(<%= header_url_tl(user) %>);'>
@@ -16,10 +16,10 @@
 
 		    <% if current_user.id != user.id %>
 		    	<% if user.followed_by?(current_user) %>
-		        <%= link_to "Following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary user-index-btn",remote: true %>
+		        <%= link_to "Following",user_relationship_path(user.id,user.passive_relationships.find_by(follower_id: current_user.id).id),method: :delete,class: "btn btn-primary user-index-btn",remote: true %>
 		      <% else %>
 		        <% if user.requested_by?(current_user) %>
-		        	<%= link_to "Requesting",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn btn-info user-index-btn",remote: true %>
+		        	<%= link_to "Requesting",user_relationship_path(user.id,user.require_relationships.find_by(follower_id: current_user.id).id),method: :delete,class: "btn btn btn-info user-index-btn",remote: true %>
 		        <% else %>
 		          <%= link_to "Follow",user_relationships_path(user.id),method: :post,class: "btn btn-default user-index-btn",remote: true %>
 		        <% end %>

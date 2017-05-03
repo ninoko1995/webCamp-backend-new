@@ -44,8 +44,7 @@ class User < ApplicationRecord
     has_many :require_relationships,-> {where(accepted: false)},
                                     class_name: "Relationship",
                                     foreign_key: "followed_id",
-                                    dependent: :destroy
-                                    
+                                    dependent: :destroy                                  
     has_many :requires, through: :require_relationships,source: :follower
  
  	#validation

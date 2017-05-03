@@ -1,0 +1,31 @@
+<table class='table'>
+	<tr>
+	  <td>
+	  	<%= link_to(user) do %>
+	      <%= image_tag profile_url_thumb(user) %><br>
+	      <%= user.name %>
+      <% end %>
+    </td>
+    <td><%= link_to book.title,book %></td>
+    <td><%= book.body %></td>
+
+    <td>
+      <% if Favorite.find_by(user_id: current_user.id,book_id: book.id).nil? %>
+        <%= link_to "", book_favorites_path(book),method: :post ,class: 'glyphicon glyphicon-heart-empty'%>
+      <% else %>
+        <%= link_to "", book_favorites_path(book), method: :delete,class: 'glyphicon glyphicon-heart' ,style: 'color:orange;'%>
+      <% end %>
+      <%= book.favorites.count %><%= link_to 'いいね!',favors_book_path(book) %>
+    </td>
+    <% if correct_user?(user) %>
+      <td><%= link_to 'Edit', edit_book_path(book) %></td>
+      <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: '本当に消しますか？' } ,class: 'btn-sm btn-danger'%></td>
+    <% end %>
+  </tr>
+</table>
+
+<% @book.book_types.preload(:type).each do |book_type| %>
+  <button class='interest-btn btn btn-default btn-sm'>
+   	<%= book_type.type.category %>
+  </button>
+<% end %>

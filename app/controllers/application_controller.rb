@@ -18,14 +18,16 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     end
 
+
     def correct_user?(user)
       if current_user.nil?
         return false
       else
         user.id.equal?(current_user.id)
       end
-    end 
+    end
 
+  
     def accepted_user?(user)
       if user.locked
         if current_user.id == user.id || !Relationship.find_by(follower_id: current_user.id,followed_id:user.id,accepted: true).blank?
