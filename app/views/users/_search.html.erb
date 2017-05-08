@@ -1,0 +1,5 @@
+<%= form_tag(search_interests_path,method: :post) do %>
+	<%= collection_select(:interest,:type_id, Type.all, :id, :category, include_blank: true) %>
+		
+	<%= submit_tag "検索" ,class: 'btn btn-primary btn-sm'%>
+<% end %> 

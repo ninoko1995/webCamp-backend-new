@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def home
     @user = current_user
     @books = []
-    @user.followings.each do |user|
+    @user.followings.includes(:books).each do |user|
       @books = @books + user.books
     end
     @books = Kaminari.paginate_array(@books.sort_by!{|book|book.created_at}).page(params[:page])

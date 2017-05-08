@@ -36,9 +36,17 @@ Rails.application.routes.draw do
   end
   
   # 本の種類に関しての機能
-  resources :interests,only: [:create,:destroy]
+  resources :interests,only: [:create,:destroy] do
+    collection do
+      post :search
+    end
+  end
 
-  resources :book_types,only: [:destroy]
+  resources :book_types,only: [:destroy] do
+    collection do
+      post :search
+    end
+  end
 
 
   # ログイン前の画面のルーティング

@@ -6,13 +6,17 @@
 	   <% end %>
 
     <h2 class='left-bottom'>New book</h2>
-    <%= render 'form', book: @book || Book.new %>
+    <%= render 'books/form', book: @book || Book.new %>
 
   </div>
 
   <div class='col-xs-9'>
     <h2>Books</h2>
-
-    <%= render 'index' ,books: @books%>
+    
+    <%= render 'books/search' %>
+    <% if !@type.blank? %>
+      <p><strong><%= @type.category %></strong>に関する投稿一覧</p>
+    <% end %>
+    <%= render 'books/index' ,books: @books%>
   </div>
 </div>

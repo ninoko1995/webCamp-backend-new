@@ -10,7 +10,17 @@ class InterestsController < ApplicationController
   	redirect_to :back
   end
 
- 
+  def search
+    @type = Type.find_by(id: params[:interest][:type_id])
+    if !@type.nil?
+      @users = @type.users
+    else
+      @users = User.all
+    end
+    render 'users/index'
+  end
+
+
   private
   
     def interest_params
