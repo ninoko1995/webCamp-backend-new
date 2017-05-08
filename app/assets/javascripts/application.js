@@ -45,19 +45,19 @@ $(document).on({
 }, ".interest-btn");
 
 //edit header image
-$(document).on('click','.header-image',show_header);
-$(document).on('click','#cancel-interest',cancel_header);
+$(document).on('click','#edit-header',edit_header);
+$(document).on('click','#cancel-header',cancel_header);
 
 
 //headerのモーダル表示
-function show_header(){
-    $('').css('display','block');
-    $('').css('width',$(window).width());
-    $('').css('height',$(window).height());
+function edit_header(){
+    $('#edit-header').css('display','none');
+    $('.header-edit').fadeIn();
 }
 //headerのモーダル非表示
 function cancel_header(){
-    $('').css('display','none');
+    $('.header-edit').fadeOut();
+    $('#edit-header').fadeIn();
 }
 
 
@@ -106,14 +106,14 @@ function cancel_profile(){
 
 //アイコンのモーダル表示
 function show_icon(){
-    $('#icon-modal').css('display','block');
     $('#icon-modal').css('width',$(window).width());
     $('#icon-modal').css('height',$(window).height());
+    $('#icon-modal').fadeIn();
 }
 
 //アイコンのモーダル非表示
 function del_icon(){
-    $('#icon-modal').css('display','none');
+    $('#icon-modal').fadeOut();
 }
 
 

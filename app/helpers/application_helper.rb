@@ -42,7 +42,7 @@ module ApplicationHelper
 
    def header_url_tl(user)
     if user.header_image?
-      return user.header.image.tl.to_s 
+      return user.header_image.tl.to_s 
     else
       return '/no-image-header-tl.jpg'
     end

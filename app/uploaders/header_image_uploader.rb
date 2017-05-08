@@ -22,7 +22,7 @@ class HeaderImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  process resize_to_fill: [1500,200,::Magick::CenterGravity]
+  process resize_to_fill: [1500,500,::Magick::CenterGravity]
 
   version :tl do
     process resize_to_fill: [300,100,::Magick::CenterGravity]
