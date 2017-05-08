@@ -22,6 +22,8 @@
 //$(document).on('page:change', modal);
 //jQuery(show_modal);
 
+
+
 //show icon
 $(document).on('click', '#icon-modal', del_icon);
 $(document).on('click','#show-icon', show_icon);
@@ -47,9 +49,6 @@ $(document).on('click','.header-image',show_header);
 $(document).on('click','#cancel-interest',cancel_header);
 
 
-
-
-
 //headerのモーダル表示
 function show_header(){
     $('').css('display','block');
@@ -57,10 +56,9 @@ function show_header(){
     $('').css('height',$(window).height());
 }
 //headerのモーダル非表示
-function cancel_icon(){
+function cancel_header(){
     $('').css('display','none');
 }
-
 
 
 
@@ -118,6 +116,9 @@ function del_icon(){
     $('#icon-modal').css('display','none');
 }
 
+
+
+
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -131,7 +132,7 @@ $("#theTarget").skippr({
     // 子要素の種類("div" or "img")
     childrenElementType : 'img',
     // ナビゲーション矢印の表示(trueで表示)
-    arrows : false,
+    arrows : true,
     // スライドショーの自動再生(falseで自動再生なし)
     autoPlay : true,
     // 自動再生時のスライド切替間隔(ミリ秒)

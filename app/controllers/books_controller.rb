@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   def index
     # 鍵アカ投稿非表示
      @books = []
-     User.all.include(:books).each do |user|
+     User.all.includes(:books).each do |user|
        if !user.locked
          @books = @books + user.books
        end

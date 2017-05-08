@@ -13,9 +13,12 @@
     <%= render 'layouts/header' %>
 
   	<div class='body'>
-      <div class='header-image' style="background-image:url(<%= header_url(@user)%>);background-size:cover;">
-        <div>
-          
+      <div class='header-image' style="background-image:url(<%= header_url(@user)%>);">
+        <div class='header-edit'>
+          <%= form_for(@user) do |f| %>
+            <%= f.file_field :header_image %>
+            <%= f.submit :class => "btn btn-default" %>
+          <% end %>
         </div>
       </div>
 
