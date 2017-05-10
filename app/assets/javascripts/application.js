@@ -51,9 +51,27 @@ $(document).on('click','.star',change_star);
 $(document).on('click','#new-book',new_book);
 $(document).on('click','#cancel-book',cancel_book);
 
-//new book
+//edit book
 $(document).on('click','#edit-book',edit_book);
 $(document).on('click','#cancel-book',cancel_book);
+
+
+//draft list
+$(document).on('click','#list-draft',show_draft_list);
+$(document).on('click','#cancel-draft',cancel_draft);
+
+
+
+//下書きリストを表示
+function show_draft_list(){
+    $(this).parent().parent().parent().find('#draft-list').css('display','block');
+    $(this).parent().parent().parent().find('#draft-list').css('width',$(window).width());
+    $(this).parent().parent().parent().find('#draft-list').css('height',$(window).height());
+}
+//下書きリストを非表示
+function cancel_draft(){
+    $(this).parent().parent().parent().parent().css('display','none');
+}
 
 
 //新しい本を投稿
@@ -81,18 +99,18 @@ function cancel_book(){
 function change_star(){
     var value = Number($(this).attr('id').slice(5,6));
     for(i=1;i<=value;i++){
-        $("#star-"+i).addClass('glyphicon-star');
-        $("#star-"+i).removeClass('glyphicon-star-empty');
+        $(this).parent().children("#star-"+i).addClass('glyphicon-star');
+        $(this).parent().children("#star-"+i).removeClass('glyphicon-star-empty');
         if(i != value){
-            $("#star-"+i).html("");
+            $(this).parent().children("#star-"+i).html("");
         }else{
-            $("#star-"+i).html("<input name='book[valuation]' type='hidden' value='"+i+"' />");
+            $(this).parent().children("#star-"+i).html("<input name='book[valuation]' type='hidden' value='"+i+"' />");
         }
     }
     for(i=value+1;i<=5;i++){
-        $("#star-"+i).addClass('glyphicon-star-empty');
-        $("#star-"+i).removeClass('glyphicon-star');
-        $("#star-"+i).html("");
+        $(this).parent().children("#star-"+i).addClass('glyphicon-star-empty');
+        $(this).parent().children("#star-"+i).removeClass('glyphicon-star');
+        $(this).parent().children("#star-"+i).html("");
     }
 
 }

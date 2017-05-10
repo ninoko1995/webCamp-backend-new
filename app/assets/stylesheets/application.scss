@@ -232,6 +232,43 @@ a:hover{
 	}
 }
 
+
+//draft list
+#draft-list{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	background-color:rgba(0,0,0,0.7);
+	z-index:2;
+}
+.book-draft{
+	margin-top:150px;
+	border-radius:5px;
+	padding:0;
+	background-color:rgba(255,255,255,1);
+	.glyphicon-star{
+		color:orange;
+	}
+	.book-draft-body{
+		padding:50px;
+	}
+	.book-draft-header{
+		background-color:rgba(0,0,0,0.5);
+		padding:10px;
+		color:white;
+		text-align:center;
+		.right{
+			float:right;
+		}
+	}
+}
+
+
+
+
+
+
 //new interest
 #interest-new{
 	display:none;

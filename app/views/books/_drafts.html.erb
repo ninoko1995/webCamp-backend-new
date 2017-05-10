@@ -1,0 +1,21 @@
+<div class='book-draft  col-xs-4 col-xs-offset-4'>
+  <div class='book-draft-header'>
+    <span class='center'>Draft list</span>
+    <div class='right'>
+      <span id='cancel-draft' class='glyphicon glyphicon-remove-sign'>
+      </span>
+    </div>
+  </div>
+  
+  <div class='book-draft-body'>
+    <table class='table table-hover table-inverse'>
+      <% current_user.drafts.each do |draft| %>
+        <tr class=<%= "draft-#{draft}" %>>
+          <td><%= draft.title %></td>
+          <td><%= draft.author %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>

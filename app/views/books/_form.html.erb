@@ -3,11 +3,17 @@
   <div class='book-new-header'>
     <span class='center'><%= title %> Book</span>
     <div class='right'>
-      <span id='drafts' class='glyphicon glyphicon-list'>
-      </span>
+      <% if !current_user.drafts.nil? %>
+        <span id='list-draft' class='glyphicon glyphicon-list'></span>
+      <% end %>
       <span id='cancel-book' class='glyphicon glyphicon-remove-sign'>
       </span>
     </div>
+  </div>
+
+
+  <div id='draft-list'>
+    <%= render 'books/drafts' %>
   </div>
 
   <div class='book-new-body'>

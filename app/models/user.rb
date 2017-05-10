@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :books,-> {where(draft: false)}
   has_many :drafts,->  {where(draft: true)},
                         class_name: 'Book',
-                        foreign_key: 'book_id'
+                        foreign_key: 'user_id'
 
   #興味による検索機能
   has_many :interests
