@@ -24,5 +24,5 @@ class Book < ApplicationRecord
 	validates :user_id ,presence: true
 	
 	validates :valuation,presence: true,numericality: {greater_than: 0,less_than: 6} 
-	validates :draft,presence: true
+	# validates :draft,presence: true
 end

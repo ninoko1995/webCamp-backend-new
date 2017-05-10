@@ -6,7 +6,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   #投稿機能
-  has_many :books
+  #本物の投稿と、下書きの違い
+  has_many :books,-> {where(draft: false)}
+  has_many :drafts,->  {where(draft: true)},
+                        class_name: 'Book',
+                        foreign_key: 'book_id'
 
   #興味による検索機能
   has_many :interests

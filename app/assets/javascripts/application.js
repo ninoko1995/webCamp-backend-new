@@ -32,10 +32,6 @@ $(document).on('click','#show-icon', show_icon);
 $(document).on('click','#edit-profile',edit_profile);
 $(document).on('click','#cancel-profile',cancel_profile);
 
-//new book
-$(document).on('click','#new-book',new_book);
-$(document).on('click','#cancel-book',cancel_book);
-
 //new interest
 $(document).on('click','#add-interest',add_interest);
 $(document).on('click','#cancel-interest',cancel_interest);
@@ -49,11 +45,57 @@ $(document).on('click','#edit-header',edit_header);
 $(document).on('click','#cancel-header',cancel_header);
 
 //star num when new book
-// $(document).on('click','.star',change_star);
+$(document).on('click','.star',change_star);
 
-// function change_star(){
-//     $(this).id
-// }
+//new book
+$(document).on('click','#new-book',new_book);
+$(document).on('click','#cancel-book',cancel_book);
+
+//new book
+$(document).on('click','#edit-book',edit_book);
+$(document).on('click','#cancel-book',cancel_book);
+
+
+//新しい本を投稿
+function edit_book(){
+    $('#book-edit').css('display','block');
+    $('#book-edit').css('width',$(window).width());
+    $('#book-edit').css('height',$(window).height());
+}
+
+
+//新しい本を投稿
+function new_book(){
+    $('#book-new').css('display','block');
+    $('#book-new').css('width',$(window).width());
+    $('#book-new').css('height',$(window).height());
+}
+//投稿をキャンセル
+function cancel_book(){
+    $('#book-new').css('display','none');
+    $('#book-edit').css('display','none');
+}
+
+
+
+function change_star(){
+    var value = Number($(this).attr('id').slice(5,6));
+    for(i=1;i<=value;i++){
+        $("#star-"+i).addClass('glyphicon-star');
+        $("#star-"+i).removeClass('glyphicon-star-empty');
+        if(i != value){
+            $("#star-"+i).html("");
+        }else{
+            $("#star-"+i).html("<input name='book[valuation]' type='hidden' value='"+i+"' />");
+        }
+    }
+    for(i=value+1;i<=5;i++){
+        $("#star-"+i).addClass('glyphicon-star-empty');
+        $("#star-"+i).removeClass('glyphicon-star');
+        $("#star-"+i).html("");
+    }
+
+}
 
 //headerのモーダル表示
 function edit_header(){
@@ -79,20 +121,6 @@ function cancel_interest(){
     $(this).css('display','none');
     $('#add-interest').css('display','inline');
 }
-
-
-//新しい本を投稿
-function new_book(){
-    $('#book-new').css('display','block');
-    $('#book-new').css('width',$(window).width());
-    $('#book-new').css('height',$(window).height());
-}
-//投稿をキャンセル
-function cancel_book(){
-    $('#book-new').css('display','none');
-}
-
-
 
 //ユーザープロフィール編集モーダル表示
 function edit_profile(){

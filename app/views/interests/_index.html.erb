@@ -12,9 +12,7 @@
 		    </button>
 		  <% end %>
 		</div>
-	  <button id='add-interest' class='glyphicon glyphicon-plus btn btn-xs'></button>
-	  <button id='cancel-interest' class='glyphicon glyphicon-minus btn btn-xs'></button>
-
+	  
 	  <div id='interest-new'>
 		  <%= form_tag(interests_path,method: :post) do %>
 				<%= collection_select(:interest,:type_id, Type.all, :id, :category, include_blank: true) %>
@@ -22,6 +20,10 @@
 			  <%= submit_tag "登録" ,class: 'btn btn-primary'%>
 			<% end %> 
 		</div>
+
+		<button id='add-interest' class='glyphicon glyphicon-plus btn btn-xs'></button>
+	  <button id='cancel-interest' class='glyphicon glyphicon-minus btn btn-xs'></button>
+
 
 	<% else  %>
 

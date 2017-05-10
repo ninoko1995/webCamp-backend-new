@@ -1,49 +1,68 @@
-<div class='new-book'>
-  <%= form_for(book) do |f| %>
-    <div class="field row">
-      <%= f.label :title %>
-
-      <%= f.text_field :title,class: 'col-xs-12' %>
+<div class='book-new col-xs-4 col-xs-offset-4'>
+  
+  <div class='book-new-header'>
+    <span class='center'><%= title %> Book</span>
+    <div class='right'>
+      <span id='drafts' class='glyphicon glyphicon-list'>
+      </span>
+      <span id='cancel-book' class='glyphicon glyphicon-remove-sign'>
+      </span>
     </div>
+  </div>
 
-    <div class="field row">
-      <%= f.label :opinion %>
-      <%= f.text_area :body ,class: 'col-xs-12'%>
-    </div>
+  <div class='book-new-body'>
+    <%= form_for(book) do |f| %>
+      <div class="field row">
+        <%= f.label :title %>
 
-    <div>
-      <% book.book_types.preload(:type).each do |book_type| %>
-          <button class='interest-btn  btn btn-default btn-sm'>
-          <%= book_type.type.category %>
-          <%= link_to book_type_path(book_type),method: :delete,remote: true  do %>
-            <span class='glyphicon glyphicon-remove-circle remove-interest'></span>
-          <% end %>
-          </button>
-      <% end %>
-    </div>
+        <%= f.text_field :title,class: 'col-xs-12' %>
+      </div>
 
-    <div class='field row'>
-      <%= f.label :book_type %>
-      <%= collection_select(:book_type,:type_id, Type.all, :id, :category, include_blank: true) %>
-    </div> 
+      <div class="field row">
+        <%= f.label :opinion %>
+        <%= f.text_area :body ,class: 'col-xs-12'%>
+      </div>
 
-    <div class='field row'>
-      <%= f.label :author %>
-      <%= f.text_field :author,class: 'col-xs-12' %>
-    </div>       
+      <div>
+        <% book.book_types.preload(:type).each do |book_type| %>
+            <button class='interest-btn  btn btn-default btn-sm'>
+            <%= book_type.type.category %>
+            <%= link_to book_type_path(book_type),method: :delete,remote: true  do %>
+              <span class='glyphicon glyphicon-remove-circle remove-interest'></span>
+            <% end %>
+            </button>
+        <% end %>
+      </div>
 
-    <div class='field row'>
-      <%= f.label :valuation %><br>
-      <% 5.times do |i| %>
-        <span class="glyphicon glyphicon-star-empty star" %></span>
-      <% end %>
-    </div>       
+      <div class='field row'>
+        <%= f.label :book_type %>
+        <%= collection_select(:book_type,:type_id, Type.all, :id, :category, include_blank: true) %>
+      </div> 
 
-    <div class="actions row">
-      <%= f.hidden_field :draft,value: false %>
-      <%= f.submit class: 'btn btn-primary col-xs-12'%>
-    </div>
+      <div class='field row'>
+        <%= f.label :author %>
+        <%= f.text_field :author,class: 'col-xs-12' %>
+      </div>       
 
+      <div class='field row'>
+        <%= f.label :valuation %><br>
+        <% (book.valuation.to_i).times do |i| %>
+          <span class="glyphicon glyphicon-star star" id=<%=  "star-#{i+1}" %>></span>
+        <% end %>
+        <% (5-book.valuation.to_i).times do |i| %>
+          <span class="glyphicon glyphicon-star-empty star" id=<%=  "star-#{i+1+book.valuation.to_i}" %>></span>
+        <% end %>
+      </div>       
 
-  <% end %>
+      <div class="actions row">
+        <% if book.id.nil? %>
+          <%= f.submit class: 'col-xs-4 btn btn-default',value: 'Save Draft'%>
+          <%= f.submit class: 'btn btn-primary col-xs-8'%>
+        <% else %>
+          <%= f.submit class: 'btn btn-primary col-xs-12'%>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
 </div>

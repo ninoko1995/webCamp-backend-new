@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy,:favors]
-  before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
+  before_action :set_book, only: [:show, :update, :destroy,:favors]
+  before_action :authenticate_user!,only: [:create,:update,:destroy,:index]
   before_action :check_correct_user,only: [:update,:destroy]
+  before_action :check_draft?,only: [:show]
   # GET /books
   # GET /books.json
   def index
@@ -24,18 +25,22 @@ class BooksController < ApplicationController
     accepted_user?(@user)
   end
 
-  # GET /books/1/edit
-  def edit
-  end
-
   # POST /books
   # POST /books.json
   def create
     @book = current_user.books.build(book_params)
-    binding.pry
+    if params[:commit] == 'Create Book' 
+      @book.draft = false
+    else
+      @book.draft = true
+    end
     if @book.save
       @book.book_types.create(type_params)
-      redirect_to @book, notice: 'Book was successfully created.' 
+      if @book.draft
+        redirect_to :back, notice: 'Book was successfully created as a draft.' 
+      else
+        redirect_to @book, notice: 'Book was successfully created.' 
+      end
     else
       @books = Book.page(params[:page])
       render :index
@@ -84,12 +89,17 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :body,:author,:draft)
+      params.require(:book).permit(:title, :body,:author,:valuation)
     end
 
-     def type_params
+    def type_params
       params.require(:book_type).permit(:type_id)
     end
 
+    def check_draft?
+      if @book.draft
+        redirect_to :back
+      end
+    end
     
 end

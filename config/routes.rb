@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :books do
+  resources :books ,only:[:index,:show,:destroy,:update,:create] do
   	resource :favorites,only:[:create,:destroy]
     resources :comments,only: [:create,:destroy]
     member do

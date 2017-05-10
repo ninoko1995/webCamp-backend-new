@@ -12,6 +12,10 @@
    
     <%= render 'layouts/header' %>
 
+    <div id='book-new'>
+      <%= render 'books/form', book: Book.new ,title: 'New'%>
+    </div>
+
   	<div class='body'>
       
       <% if !@book.blank? %>

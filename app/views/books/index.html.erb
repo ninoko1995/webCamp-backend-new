@@ -4,10 +4,6 @@
     <% if !current_user.blank? %>
 	    <%= render 'users/mini-info', user: current_user,now: ''%>
 	   <% end %>
-
-    <h2 class='left-bottom'>New book</h2>
-    <%= render 'books/form', book: @book || Book.new %>
-
   </div>
 
   <div class='col-xs-9'>

@@ -16,6 +16,7 @@
             <li><%= link_to ' TimeLine',home_users_path,class: 'glyphicon glyphicon-list-alt' %></li>
             <li><%= link_to ' Users',users_path,class: 'glyphicon glyphicon-user' %></li>
             <li><%= link_to ' Books',books_path ,class: 'glyphicon glyphicon-book'%></li>
+            <li><%= link_to ' NewBook', "javascript:void(0)" ,class: 'glyphicon glyphicon-pencil', id: 'new-book',onclick: "new_book()"%></li>
             <li><%= link_to ' logout', destroy_user_session_path(current_user),method: :delete,class: 'glyphicon glyphicon-log-out' %></li>
         <% end %>
       </ul>
