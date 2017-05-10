@@ -52,9 +52,11 @@
             <%= link_to "#{@user.followers.count} followers",followers_user_path(@user),class: "btn btn-#{@wer} col-xs-1" %>
             <% if @user.locked && @user == current_user%>
               <%= link_to "#{@user.requires.count} requires",requires_user_path(@user) , class: "btn btn-#{@ire} col-xs-1"%>
+            <% else %>
+              <span class='col-xs-1'></span>
             <% end %>
 
-
+            
             <% if correct_user?(@user) %>
               <p class="btn btn-default col-xs-1 col-xs-offset-3 glyphicon glyphicon-cog" id= 'edit-profile' ></p>
               <span class="btn btn-danger col-xs-1 col-xs-offset-3" id='cancel-profile'>cancel</span> 
