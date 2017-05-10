@@ -51,6 +51,11 @@ div {
 
 #notice {
   color: green;
+  z-index:2;
+  position:fixed;
+  top:51px;
+  background-color:gray;
+
 }
 
 .field_with_errors {
@@ -60,6 +65,9 @@ div {
 }
 
 #error_explanation {
+  position:fixed;
+  top:51px;
+  z-index:2;
   width: 450px;
   border: 2px solid red;
   padding: 7px;

@@ -1,5 +1,5 @@
 <div class='row'>
-  <% users.preload(:passive_relationships,:require_relationships).each do |user| %>
+  <% users.preload(:passive_relationships,:require_relationships,:types).each do |user| %>
     
     <div class='col-lg-4 user-index'>
     	<div class='tl-info' style='background-image:url(<%= header_url_tl(user) %>);'>
@@ -28,6 +28,10 @@
 			</div>
 			<br>
 			<%= user.introduction %>
+
+			<div class='interest-tl'><%= render 'interests/index' , user: user %></div>
+
+
   	</div>
 
 	<% end %>

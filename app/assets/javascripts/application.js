@@ -92,6 +92,8 @@ function cancel_book(){
 function edit_profile(){
     $('#profile-edit').css('display','block');
     $('#normal').css('display','none'); 
+    $('#edit-profile').css('display','none'); 
+    $('#cancel-profile').css('display','block'); 
     $('.interest').css('display','none'); 
 
 }
@@ -99,6 +101,8 @@ function edit_profile(){
 function cancel_profile(){
     $('#profile-edit').css('display','none');
     $('#normal').css('display','block'); 
+    $('#edit-profile').css('display','block'); 
+    $('#cancel-profile').css('display','none'); 
     $('.interest').css('display','block'); 
 }
 

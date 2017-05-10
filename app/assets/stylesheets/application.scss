@@ -35,6 +35,11 @@ header{
 	}
 }
 
+.menu{
+	.btn-primary{
+		color:white;
+	}
+}
 //footer
 footer{
 	width:100%;
@@ -119,6 +124,7 @@ a:hover{
 	padding-left:20px;
 	padding-top:40px;
 	margin-bottom:30px;
+	margin-top:10px;
 }
 .tl-name{
 	position:absolute;
@@ -138,7 +144,9 @@ a:hover{
 #profile-edit{
 	display:none;
 }
-
+#cancel-profile{
+	display:none;
+}
 .user-edit-table{
 	margin-bottom:0px;
 }
@@ -168,9 +176,17 @@ a:hover{
 .user-index{
 	height:300px;
 	border-radius:5px;
+	position:relative;
+	margin-bottom:15px;
 }
 .user-index-btn{
 	float:right;
+}
+.interest-tl{
+	position:absolute;
+	left:30px;
+	right:30px;
+	bottom:0;
 }
 
 

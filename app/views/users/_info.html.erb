@@ -18,35 +18,6 @@
       </td></tr>
     	<tr><td><%= user.introduction %></td></tr>
     </table>
-
-    <!-- normal -->
-    <div class="row">
-      <h4>Data</h4>
-      <%= link_to "#{user.books.count} books",user_path(user),class: "btn btn-#{@boo} col-xs-6"%>
-
-      <%= link_to "#{user.favorites.count} favorites",user_favorites_path(user),class: "btn  btn-#{@fav} col-xs-6" %>
-
-      <% if correct_user?(user) %>
-        <p class="btn btn-default col-xs-4 glyphicon glyphicon-wrench" id= 'edit-profile' ></p>
-      <% else %>
-        <% if user.followed_by?(current_user) %>
-          <%= link_to "following",user_relationship_path(user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id).id),method: :delete,class: "btn btn-primary col-xs-4",remote: true %>
-        <% else %>
-          <% if user.requested_by?(current_user) %>
-            <%= link_to 'requesting',user_relationship_path(current_user.id,Relationship.find_by(follower_id: current_user.id,followed_id: user.id,accepted: false).id),method: :delete,class: 'btn btn-info col-xs-4 disable' %>
-          <% else %>
-            <%= link_to "follow",user_relationships_path(user.id),method: :post,class: "btn btn-default col-xs-4",remote: true %>
-          <% end %>
-        <% end %>
-      <% end  %>
-
-      
-      <%= link_to "#{user.followings.count} followings",follows_user_path(user),class: "btn btn-#{@wing} col-xs-4" %>
-      <%= link_to "#{user.followers.count} followers",followers_user_path(user),class: "btn btn-#{@wer} col-xs-4" %>
-      <% if user.locked && user == current_user%>
-        <%= link_to "#{user.requires.count} requires",requires_user_path(user) , class: "btn btn-#{@ire} col-xs-12"%>
-      <% end %>  
-    </div>
   </div>
 
   <%= render 'users/form' , user: user %>

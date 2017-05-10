@@ -1,8 +1,6 @@
 <div class='interest row'>
 	<!-- 自分のページを見てるかどうかで、好きな本のジャンルを編集するボタンを置くかどうか決める -->
-  <% if current_user.id == params[:id].to_i || current_user.id == params[:user_id].to_i %>
-
-	  <h4>favarite Genro</h4>
+  <% if current_user.id == user.id && ( current_user.id == params[:id].to_i || current_user.id == params[:user_id].to_i ) %>
 		
 		<div>  
 		  <% user.interests.preload(:type).each do |interest| %>
@@ -27,7 +25,6 @@
 
 	<% else  %>
 
-		<h4>favarite Genro</h4>
 	  <% user.interests.preload(:type).each do |interest| %>
 	    <button class='interest-btn btn btn-default btn-sm'>
 	    	<%= interest.type.category %>
