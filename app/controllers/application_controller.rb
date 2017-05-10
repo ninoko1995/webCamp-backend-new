@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
         user.id.equal?(current_user.id)
       end
     end
-
   
     def accepted_user?(user)
       if user.locked

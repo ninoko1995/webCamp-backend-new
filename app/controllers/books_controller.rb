@@ -32,6 +32,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = current_user.books.build(book_params)
+    binding.pry
     if @book.save
       @book.book_types.create(type_params)
       redirect_to @book, notice: 'Book was successfully created.' 
@@ -55,8 +56,9 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
+    @user = @book.user
     @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    redirect_to @user, notice: 'Book was successfully destroyed.'
   end
 
 
@@ -82,7 +84,7 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :body)
+      params.require(:book).permit(:title, :body,:author,:draft)
     end
 
      def type_params

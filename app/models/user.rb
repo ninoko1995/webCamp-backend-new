@@ -20,7 +20,7 @@ class User < ApplicationRecord
   
   #favorite機能
   has_many :favorites
-  has_many :favorite_books,through: :favorite, source: :book
+  has_many :favorite_books,through: :favorites, source: :book
 
   #comment機能
   has_many :comments

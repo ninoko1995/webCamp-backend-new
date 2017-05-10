@@ -48,6 +48,12 @@ $(document).on({
 $(document).on('click','#edit-header',edit_header);
 $(document).on('click','#cancel-header',cancel_header);
 
+//star num when new book
+// $(document).on('click','.star',change_star);
+
+// function change_star(){
+//     $(this).id
+// }
 
 //headerのモーダル表示
 function edit_header(){

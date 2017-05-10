@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 }
   
   resources :users,only: [:show,:edit,:update,:index] do
-  	resources :favorites,only:[:index]
   	resources :relationships, only: [:create, :destroy] do
       member do
         get :accept
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
 	  	get :follows
 	  	get :followers
       get :requires
+      get :favorites
 	  end
 
     collection do

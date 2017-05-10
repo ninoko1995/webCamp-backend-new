@@ -1,0 +1,16 @@
+<div class='header-image' style="background-image:url(<%= header_url(user)%>);">
+
+  <div class='header-edit'>
+    <%= form_for(user) do |f| %>
+      <%= f.file_field :header_image %>
+      <div class="button">
+        <%= f.submit :class => "btn btn-default" %>
+        <span class="btn btn-danger" id='cancel-header'>cancel</span> 
+      </div>
+     <% end %>
+  </div>
+
+  <% if correct_user?(user) %>
+    <span class='glyphicon glyphicon-chevron-up' id='edit-header'></span>
+  <% end %> 
+</div>

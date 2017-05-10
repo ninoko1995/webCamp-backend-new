@@ -1,15 +1,10 @@
-<div class='row'>
-  
+<%= render 'users/user-header',user: @user%>
+<div class='row'>    
   <div class='col-xs-3'>
     <h2>User info</h2>
-    <%= render 'info', user: @user, now: 'followings'%>
-
-    <!-- <h2>New book</h2>
-    <%= render 'books/form', book: @book %>
- -->
+    <%= render 'info', user: @user%>
   </div>
-  
-
+    
   <div class='col-xs-9'>
     <h2>follows</h2>
     <% if @accepted %>
@@ -18,5 +13,4 @@
       <%= render 'layouts/protected' %>
     <% end %>
   </div>
-
 </div>

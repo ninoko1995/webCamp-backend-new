@@ -22,12 +22,28 @@
       <% end %>
     </div>
 
-    <%= f.label :book_type %>
-    <%= collection_select(:book_type,:type_id, Type.all, :id, :category, include_blank: true) %>
-      
+    <div class='field row'>
+      <%= f.label :book_type %>
+      <%= collection_select(:book_type,:type_id, Type.all, :id, :category, include_blank: true) %>
+    </div> 
+
+    <div class='field row'>
+      <%= f.label :author %>
+      <%= f.text_field :author,class: 'col-xs-12' %>
+    </div>       
+
+    <div class='field row'>
+      <%= f.label :valuation %><br>
+      <% 5.times do |i| %>
+        <span class="glyphicon glyphicon-star-empty star" %></span>
+      <% end %>
+    </div>       
 
     <div class="actions row">
+      <%= f.hidden_field :draft,value: false %>
       <%= f.submit class: 'btn btn-primary col-xs-12'%>
     </div>
+
+
   <% end %>
 </div>
