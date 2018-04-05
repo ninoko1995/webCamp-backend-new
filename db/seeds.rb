@@ -35,6 +35,8 @@ user_num = 100
 	end
 end
 
+puts 'finish users'
+
 User.create!(
 	name:'nino',
 	email: 'ninoko1995@yahoo.co.jp',
@@ -43,14 +45,18 @@ User.create!(
 	locked: true
 	)
 
+puts 'finish administrator'
 
 book_num.times do |i|
 	Book.create!(
 		user_id: rand(1..user_num),
 		title: book[i],
-		body: "第#{11-i/10}回目の本屋大賞で#{i%10+1}位とっただけあって、読みごたえがある！"
+		body: "第#{(i-i%10)/10+1}回目の本屋大賞で#{(i%10)+1}位とっただけあって、読みごたえがある！",
+		valuation: rand(1..5)
 	)
 end
+
+puts 'books'
 
 user_num.times do |i|
 	follow = rand(1..user_num)
@@ -65,6 +71,8 @@ user_num.times do |i|
 	end
 end
 
+puts 'finish follow'
+
 user_num.times do |t|
 	fav = rand(1..book_num)
 	fav.times do |i|
@@ -74,3 +82,5 @@ user_num.times do |t|
 			)
 	end
 end
+
+puts 'finish Favorite'
