@@ -15,6 +15,7 @@ class BooksController < ApplicationController
      end
      @books = Kaminari.paginate_array(@books.sort_by!{|book|book.created_at}).page(params[:page]) 
     
+    
   end
 
   # GET /books/1
