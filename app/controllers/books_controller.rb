@@ -14,8 +14,6 @@ class BooksController < ApplicationController
        end
      end
      @books = Kaminari.paginate_array(@books.sort_by!{|book|book.created_at}).page(params[:page]) 
-    
-    
   end
 
   # GET /books/1
@@ -38,6 +36,7 @@ class BooksController < ApplicationController
     if @book.save
       @book.book_types.create(type_params)
       if @book.draft
+        binding.pry
         redirect_to :back, notice: 'Book was successfully created as a draft.' 
       else
         redirect_to @book, notice: 'Book was successfully created.' 

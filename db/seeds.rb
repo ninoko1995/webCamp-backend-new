@@ -22,6 +22,17 @@ book_num = book.length
 puts book_num
 user_num = 100
 
+User.create!(
+	name:'nino',
+	email: 'ninoko1995@yahoo.co.jp',
+	password: 'ninoninomiyamiya1995',
+	introduction: '作成者アカウントです',
+	locked: true
+	)
+
+puts 'finish administrator'
+
+
 (user_num-1).times do |i|
 	User.create!(
 		name:"ユーザーその#{i+1}",
@@ -37,28 +48,29 @@ end
 
 puts 'finish users'
 
-User.create!(
-	name:'nino',
-	email: 'ninoko1995@yahoo.co.jp',
-	password: 'ninoninomiyamiya1995',
-	introduction: '作成者アカウントです',
-	locked: true
-	)
-
-puts 'finish administrator'
 
 book_num.times do |i|
+	#book
 	Book.create!(
 		user_id: rand(1..user_num),
 		title: book[i],
 		body: "第#{(i-i%10)/10+1}回目の本屋大賞で#{(i%10)+1}位とっただけあって、読みごたえがある！",
-		valuation: rand(1..5)
+		valuation: rand(1..5),
+		draft: false
+	)
+
+	
+	#set type
+	BookType.create!(
+		book_id: i+1,
+		type_id: rand(1..type_num)
 	)
 end
 
-puts 'books'
+puts 'finish books'
 
 user_num.times do |i|
+	#follow
 	follow = rand(1..user_num)
 	follow.times do |t|
 		if i != t
@@ -69,18 +81,27 @@ user_num.times do |i|
 				)
 		end
 	end
+
+	#fav
+	fav = rand(1..book_num)
+	fav.times do |t|
+		Favorite.create!(
+			book_id: (i+t*7)%book_num+1,
+			user_id: i+1
+			)
+	end
+
+	#interest
+	interest=rand(1..type_num)
+	interest.times do |t|
+		Interest.create!(
+			user_id: i+1,
+			type_id: (t+i)%type_num+1
+			)
+	end
+
 end
 
 puts 'finish follow'
-
-user_num.times do |t|
-	fav = rand(1..book_num)
-	fav.times do |i|
-		Favorite.create!(
-			book_id: (t+i*3)%book_num+1,
-			user_id: t+1
-			)
-	end
-end
-
 puts 'finish Favorite'
+puts 'finish interest'
