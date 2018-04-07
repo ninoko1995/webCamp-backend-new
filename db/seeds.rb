@@ -83,7 +83,7 @@ user_num.times do |i|
 	end
 
 	#fav
-	fav = rand(1..book_num)
+	fav = rand(1..book_num/2)
 	fav.times do |t|
 		Favorite.create!(
 			book_id: (i+t*7)%book_num+1,
@@ -92,7 +92,7 @@ user_num.times do |i|
 	end
 
 	#interest
-	interest=rand(1..type_num)
+	interest=rand(1..type_num/2)
 	interest.times do |t|
 		Interest.create!(
 			user_id: i+1,
